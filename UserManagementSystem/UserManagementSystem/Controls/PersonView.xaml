@@ -1,0 +1,46 @@
+﻿<Window x:Class="UserManagementSystem.Controls.PersonView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UserManagementSystem.Controls"
+        xmlns:collections="clr-namespace:UserManagementSystem.Collections"
+        mc:Ignorable="d"
+        Title="PersonView" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="47*"></ColumnDefinition>
+            <ColumnDefinition Width="151*"/>
+            <ColumnDefinition Width="47*"></ColumnDefinition>
+            <ColumnDefinition Width="145*"/>
+        </Grid.ColumnDefinitions>
+
+        <Label x:Name="head" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" Content="Person Details" FontSize="36" FontFamily="Arial" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" MinHeight="60" Width="244" Margin="228,-4,226,50" Grid.RowSpan="2"/>
+
+        <Label x:Name="personType" Grid.Row="1" Grid.Column="0" Content="Person Type: " HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Margin="0,13,0,14" Width="80"/>
+        <Label x:Name="name" Grid.Row="2" Grid.Column="0" Content="Name: " HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Margin="0,14,0,13" Width="48"/>
+        <Label x:Name="surname" Grid.Row="3" Grid.Column="0" Content="Surname: " VerticalAlignment="Center" HorizontalAlignment="Left" Height="26" Margin="0,13" Width="63"/>
+        <Label x:Name="age" Grid.Row="4" Grid.Column="0" Content="Age: " HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Margin="0,13" Width="37"/>
+        <Label x:Name="eyeColor" Grid.Row="5" Grid.Column="0" Content="Eye Color: " HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Margin="0,13" Width="66"/>
+        <Label x:Name="height" Grid.Row="6" Grid.Column="0" Content="Height: " HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Margin="0,13" Width="52"/>
+        <Label x:Name="weight" Grid.Row="7" Grid.Column="0" Content="Weight: " HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Margin="0,13" Width="54"/>
+        <TextBox x:Name="nameInput" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0,15" Grid.Row="2" TextWrapping="Wrap" Text="{Binding Path=PersonToEdit.Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="surnameInput" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0,15" Grid.Row="3" TextWrapping="Wrap" Text="{Binding Path=PersonToEdit.SurName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="ageInput" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0,15" Grid.Row="4" TextWrapping="Wrap" Text="{Binding Path=PersonToEdit.Age, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="eyeColorInput" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0,15" Grid.Row="5" TextWrapping="Wrap" Text="{Binding Path=PersonToEdit.EyeColor, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="heightInput" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0,15" Grid.Row="6" TextWrapping="Wrap" Text="{Binding Path=PersonToEdit.Height, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120"/>
+        <TextBox x:Name="weightInput" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="0,15" Grid.Row="7" TextWrapping="Wrap" Text="{Binding Path=PersonToEdit.Weight, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="120"/>
+        <ComboBox x:Name="personTypeSelection" Grid.Column="1" HorizontalAlignment="Left" Margin="0,15,0,16" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
+        <Button Click="Button_Click"  />
+    </Grid>
+</Window>

@@ -1,0 +1,27 @@
+﻿<UserControl x:Class="UserManagementSystem.Controls.PersonOverview"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UserManagementSystem.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             Name="Overview">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="newUser" Content="Add new Person" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Click="newUser_Click"/>
+            <Button x:Name="importUsers" Content="Import Users" Grid.Column="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
+        </Grid>
+        <WrapPanel x:Name="PersonTable" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" Height="0" Width="0">
+        </WrapPanel>
+    </Grid>
+</UserControl>
