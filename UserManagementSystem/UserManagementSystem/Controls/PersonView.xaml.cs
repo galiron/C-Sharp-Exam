@@ -25,7 +25,6 @@ namespace UserManagementSystem.Controls
     public partial class PersonView : Window
     {
         private Type currentPersonType = null;
-        private Person _person;
         public Person PersonToEdit { get; set; }
 
         public PersonView(Person person)
@@ -56,7 +55,8 @@ namespace UserManagementSystem.Controls
             Console.WriteLine(info);
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        /* Databinding test function
+         private void Button_Click(object sender, RoutedEventArgs e)
         {
             PersonToEdit.Name = "a";
             PersonToEdit.SurName = "a";
@@ -65,6 +65,12 @@ namespace UserManagementSystem.Controls
             PersonToEdit.Weight = "a";
             PersonToEdit.Height = "a";
             Console.WriteLine(PersonToEdit.Name);
+        }*/
+
+        private void save_Click(object sender, RoutedEventArgs e)
+        {
+            AppState.Persons.Add(PersonToEdit);
+            this.Close();
         }
     }
 }

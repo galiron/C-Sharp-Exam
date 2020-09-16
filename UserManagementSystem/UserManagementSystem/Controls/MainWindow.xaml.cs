@@ -22,11 +22,9 @@ namespace UserManagementSystem
     /// </summary>
     public partial class MainWindow : Window
     {
-        private PersonOverview _personOverview;
         public MainWindow()
         {
             InitializeComponent();
-
         }
 
     }

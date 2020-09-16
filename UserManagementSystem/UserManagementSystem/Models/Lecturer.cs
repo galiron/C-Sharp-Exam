@@ -22,5 +22,13 @@ namespace UserManagementSystem.Models
         {
             properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));
         }
+
+        private string _salary;
+
+        public string Salary
+        {
+            get => _salary;
+            set => SetField(ref _salary, value, "Salary");
+        }
     }
 }

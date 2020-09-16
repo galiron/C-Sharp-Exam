@@ -10,7 +10,6 @@ namespace UserManagementSystem.Models
 {
     public class Person : IPropertyNotificator
     {
-        public event PropertyChangedEventHandler PropertyChanged;
 
         public Person(string name, string surname)
         {
@@ -21,7 +20,6 @@ namespace UserManagementSystem.Models
         public Person()
         {
         }
-
 
         public Person(List<PropertyInfo> properties)
         {

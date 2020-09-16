@@ -24,7 +24,6 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class PersonOverview : UserControl
     {
-        private WrapPanel personTable = new WrapPanel();
         private Window personView;
 
         public PersonOverview()
@@ -33,12 +32,15 @@ namespace UserManagementSystem.Controls
             PersonCollection.personSet += updatePersonTable;
             PersonCollection.personremoved += updatePersonTable;
             InitializeComponent();
+            PersonTable.Children.Add(new PersonEntry("asdsdasd", "View User"));
+            
         }
 
         public void updatePersonTable()
         {
             PersonTable.Children.RemoveRange(0,PersonTable.Children.Count);
-            AppState.Persons.ToList().ForEach(p => this.PersonTable.Children.Add(new PersonEntry(p.Name + " " + p.SurName,"View User")));
+            AppState.Persons.ToList().ForEach(p => PersonTable.Children.Add(new PersonEntry(p.Name + " " + p.SurName,"View User")));
+            Console.WriteLine(PersonTable);
         }
 
         private void newUser_Click(object sender, RoutedEventArgs e)
@@ -47,5 +49,7 @@ namespace UserManagementSystem.Controls
             personView = new PersonView(newPerson);
             personView.Show();
         }
+
+        
     }
 }

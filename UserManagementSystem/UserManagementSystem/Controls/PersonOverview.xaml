@@ -21,7 +21,7 @@
             <Button x:Name="newUser" Content="Add new Person" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Click="newUser_Click"/>
             <Button x:Name="importUsers" Content="Import Users" Grid.Column="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
         </Grid>
-        <WrapPanel x:Name="PersonTable" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical" Height="0" Width="0">
-        </WrapPanel>
+        <WrapPanel Name="PersonTable" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical"/>
+
     </Grid>
 </UserControl>

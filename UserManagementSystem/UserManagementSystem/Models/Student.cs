@@ -21,5 +21,13 @@ namespace UserManagementSystem.Models
         {
             properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));
         }
+
+        private string _averageGrade;
+
+        public string AverageGrade
+        {
+            get => _averageGrade;
+            set => SetField(ref _averageGrade, value, "AverageGrade");
+        }
     }
 }

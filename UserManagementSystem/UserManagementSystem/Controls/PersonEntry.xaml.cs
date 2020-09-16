@@ -29,5 +29,14 @@ namespace UserManagementSystem.Controls
             this.viewUserButton.Content = buttonContent;
         }
 
+        public PersonEntry()
+        {
+
+            InitializeComponent();
+            this.userLabel.Content = "dummy";
+
+            this.viewUserButton.Content = "dummy";
+        }
+
     }
 }
