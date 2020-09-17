@@ -25,7 +25,7 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class PersonView : Window
     {
-        private Type currentPersonType = null;
+        private Type _currentPersonType = null;
         private int _indexOfPersonInAppStatePersonCollection;
         public Person PersonToEdit { get; set; }
 
@@ -34,14 +34,20 @@ namespace UserManagementSystem.Controls
             _indexOfPersonInAppStatePersonCollection= AppState.Persons.IndexOf(person);
             DataContext = this;
             PersonToEdit = person;
-            currentPersonType = person.GetType();
+            _currentPersonType = person.GetType();
+
+            InitializeComponent();
+            initializeComboBox();
+        }
+
+        private void initializeComboBox()
+        {
             List<string> personTypeComboBoxEntries = new List<string>();
             foreach (var keyValuePair in PersonModelDictionary.personClassDictionary)
             {
                 personTypeComboBoxEntries.Add(keyValuePair.Key);
             }
-            InitializeComponent();
-            string currentPersonTypeKey = PersonModelDictionary.GetSimpleClassFromType(currentPersonType.ToString());
+            string currentPersonTypeKey = PersonModelDictionary.GetSimpleClassFromType(_currentPersonType.ToString());
             Console.WriteLine(currentPersonTypeKey);
             foreach (var entry in personTypeComboBoxEntries)
             {
