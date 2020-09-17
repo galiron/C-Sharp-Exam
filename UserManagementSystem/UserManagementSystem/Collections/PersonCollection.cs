@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using UserManagementSystem.Models;
-using UserManagementSystem.Utility;
 
 namespace UserManagementSystem.Collections
 {

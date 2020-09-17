@@ -49,7 +49,7 @@
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <Button x:Name="save" Content="Save" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75" Grid.Column="0" Click="save_Click"/>
-            <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"  Grid.Column="1"/>
+            <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"  Grid.Column="1" Click="cancel_Click"/>
 
         </Grid>
     </Grid>

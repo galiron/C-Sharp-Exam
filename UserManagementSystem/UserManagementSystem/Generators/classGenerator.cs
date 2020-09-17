@@ -12,7 +12,7 @@ namespace UserManagementSystem.Generators
     {
         public static Object CreatePersonClassFromString(string className)
         {
-            string objectToInstantiate = PersonModelDictionary.getValue(className);
+            string objectToInstantiate = PersonModelDictionary.GetValue(className);
 
             var objectType = Type.GetType(objectToInstantiate);
 

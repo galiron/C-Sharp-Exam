@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,10 +26,12 @@ namespace UserManagementSystem.Controls
     public partial class PersonView : Window
     {
         private Type currentPersonType = null;
+        private int _indexOfPersonInAppStatePersonCollection;
         public Person PersonToEdit { get; set; }
 
         public PersonView(Person person)
         {
+            _indexOfPersonInAppStatePersonCollection= AppState.Persons.IndexOf(person);
             DataContext = this;
             PersonToEdit = person;
             currentPersonType = person.GetType();
@@ -38,9 +41,19 @@ namespace UserManagementSystem.Controls
                 personTypeComboBoxEntries.Add(keyValuePair.Key);
             }
             InitializeComponent();
+            string currentPersonTypeKey = PersonModelDictionary.GetSimpleClassFromType(currentPersonType.ToString());
+            Console.WriteLine(currentPersonTypeKey);
             foreach (var entry in personTypeComboBoxEntries)
             {
                 personTypeSelection.Items.Add(entry);
+            }
+            if (currentPersonTypeKey != "")
+            {
+                personTypeSelection.SelectedItem = currentPersonTypeKey;
+            }
+            else
+            {
+                personTypeSelection.SelectedItem = "Person";
             }
 
             personTypeSelection.SelectionChanged += new SelectionChangedEventHandler(updateUserControlByUniqueClassFields);
@@ -50,26 +63,29 @@ namespace UserManagementSystem.Controls
         {
             Person selectedPersonType = (Person) ClassGenerator.CreatePersonClassFromString(personTypeSelection.SelectedValue.ToString());
             ModelConverter.convertSourceToTargetModel(PersonToEdit, selectedPersonType);
-            Console.WriteLine(selectedPersonType.GetType());
             PropertyInfo[] info = selectedPersonType.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            Console.WriteLine(info);
         }
-
-        /* Databinding test function
-         private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            PersonToEdit.Name = "a";
-            PersonToEdit.SurName = "a";
-            PersonToEdit.Age = "a";
-            PersonToEdit.EyeColor = "a";
-            PersonToEdit.Weight = "a";
-            PersonToEdit.Height = "a";
-            Console.WriteLine(PersonToEdit.Name);
-        }*/
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            AppState.Persons.Add(PersonToEdit);
+            // the copy step is necessary because the Instance of PersonToEdit is not allways the target instance (polymorphism)
+            Person newPerson =
+                PersonToEdit.copyPerson(
+                    (Person)ClassGenerator.CreatePersonClassFromString(personTypeSelection.Text));
+            if (this._indexOfPersonInAppStatePersonCollection == -1)
+            {
+                AppState.Persons.Add(newPerson);
+            }
+            else
+            {
+                AppState.Persons[_indexOfPersonInAppStatePersonCollection] = newPerson;
+            }
+
+            this.Close();
+        }
+
+        private void cancel_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

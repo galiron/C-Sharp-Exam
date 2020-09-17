@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UserManagementSystem.Models;
 
 namespace UserManagementSystem.Controls
 {
@@ -20,23 +21,19 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class PersonEntry : UserControl
     {
-
-        public PersonEntry(string labelContent, string buttonContent)
+        private Person _person;
+        public PersonEntry(Person person)
         {
-
+            _person = person;
             InitializeComponent();
-            this.userLabel.Content = labelContent;
-            this.viewUserButton.Content = buttonContent;
+            this.userLabel.Content =_person.Name + " " +_person.SurName;
+            this.viewUserButton.Content = "View User";
         }
 
-        public PersonEntry()
+        private void viewUser(object sender, RoutedEventArgs e)
         {
-
-            InitializeComponent();
-            this.userLabel.Content = "dummy";
-
-            this.viewUserButton.Content = "dummy";
+            PersonView personView = new PersonView(_person);
+            personView.Show();
         }
-
     }
 }

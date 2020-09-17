@@ -4,6 +4,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementSystem.Utility;
 
 namespace UserManagementSystem.Collections
 {
@@ -16,7 +17,7 @@ namespace UserManagementSystem.Collections
             {"Lecturer", "UserManagementSystem.Models.Lecturer, UserManagementSystem"}
         };
 
-        public static string getValue(string key)
+        public static string GetValue(string key)
         {
             string retrievedValue = null;
 
@@ -30,6 +31,11 @@ namespace UserManagementSystem.Collections
             }
 
             return retrievedValue;
+        }
+
+        public static string GetSimpleClassFromType(string value)
+        {
+            return value.Replace("UserManagementSystem.Models.", "");
         }
     }
 }

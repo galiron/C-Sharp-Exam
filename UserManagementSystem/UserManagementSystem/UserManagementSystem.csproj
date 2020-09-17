@@ -75,8 +75,7 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\UniversityMember.cs" />
     <Compile Include="Services\ModelConverter.cs" />
-    <Compile Include="Utility\Extensions.cs" />
-    <Compile Include="Utility\Validator.cs" />
+    <Compile Include="Utility\Helper.cs" />
     <Page Include="Controls\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

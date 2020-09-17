@@ -18,3 +18,4 @@ E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\PersonOverview.baml
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\PersonView.g.cs
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\PersonView.baml
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\UserManagementSystem.csprojAssemblyReference.cache

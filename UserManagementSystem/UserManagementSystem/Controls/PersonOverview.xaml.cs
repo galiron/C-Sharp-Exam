@@ -32,14 +32,13 @@ namespace UserManagementSystem.Controls
             PersonCollection.personSet += updatePersonTable;
             PersonCollection.personremoved += updatePersonTable;
             InitializeComponent();
-            PersonTable.Children.Add(new PersonEntry("asdsdasd", "View User"));
             
         }
 
         public void updatePersonTable()
         {
             PersonTable.Children.RemoveRange(0,PersonTable.Children.Count);
-            AppState.Persons.ToList().ForEach(p => PersonTable.Children.Add(new PersonEntry(p.Name + " " + p.SurName,"View User")));
+            AppState.Persons.ToList().ForEach(p => PersonTable.Children.Add(new PersonEntry(p)));
             Console.WriteLine(PersonTable);
         }
 

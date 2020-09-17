@@ -16,9 +16,17 @@ namespace UserManagementSystem.Models
             _name = name;
             _surname = surname;
         }
+        public Person() { }
 
-        public Person()
+        public Person copyPerson(Person instanceToCopy)
         {
+            instanceToCopy._name = this._name;
+            instanceToCopy._surname = this._surname;
+            instanceToCopy._age = this._age;
+            instanceToCopy._eyeColor = this._eyeColor;
+            instanceToCopy._height = this._height;
+            instanceToCopy._weight = this._weight;
+            return instanceToCopy;
         }
 
         public Person(List<PropertyInfo> properties)
