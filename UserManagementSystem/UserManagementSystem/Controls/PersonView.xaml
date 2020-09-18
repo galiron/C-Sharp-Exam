@@ -52,5 +52,6 @@
             <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"  Grid.Column="1" Click="cancel_Click"/>
 
         </Grid>
+        <StackPanel x:Name="PropertyList"  Grid.Column="3" HorizontalAlignment="Left" Grid.Row="1" Grid.RowSpan="8" VerticalAlignment="Top"/>
     </Grid>
 </Window>

@@ -39,7 +39,6 @@ namespace UserManagementSystem.Controls
         {
             PersonTable.Children.RemoveRange(0,PersonTable.Children.Count);
             AppState.Persons.ToList().ForEach(p => PersonTable.Children.Add(new PersonEntry(p)));
-            Console.WriteLine(PersonTable);
         }
 
         private void newUser_Click(object sender, RoutedEventArgs e)

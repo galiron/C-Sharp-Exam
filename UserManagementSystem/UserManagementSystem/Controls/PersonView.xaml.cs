@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -17,6 +18,7 @@ using UserManagementSystem.Collections;
 using UserManagementSystem.Generators;
 using UserManagementSystem.Models;
 using UserManagementSystem.Services;
+using ComboBox = System.Windows.Controls.ComboBox;
 
 namespace UserManagementSystem.Controls
 {
@@ -48,28 +50,34 @@ namespace UserManagementSystem.Controls
                 personTypeComboBoxEntries.Add(keyValuePair.Key);
             }
             string currentPersonTypeKey = PersonModelDictionary.GetSimpleClassFromType(_currentPersonType.ToString());
-            Console.WriteLine(currentPersonTypeKey);
             foreach (var entry in personTypeComboBoxEntries)
             {
                 personTypeSelection.Items.Add(entry);
             }
-            if (currentPersonTypeKey != "")
-            {
-                personTypeSelection.SelectedItem = currentPersonTypeKey;
-            }
-            else
-            {
-                personTypeSelection.SelectedItem = "Person";
-            }
+            personTypeSelection.SelectedItem = currentPersonTypeKey != "" ? currentPersonTypeKey : "Person";
 
             personTypeSelection.SelectionChanged += new SelectionChangedEventHandler(updateUserControlByUniqueClassFields);
         }
 
         public void updateUserControlByUniqueClassFields(object sender, SelectionChangedEventArgs e)
         {
-            Person selectedPersonType = (Person) ClassGenerator.CreatePersonClassFromString(personTypeSelection.SelectedValue.ToString());
+            PropertyInfo[] varyingPropeties = findVaryingFields();
+            PropertyInfo[] sourceProperties = PersonToEdit.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            sourceProperties.ToList().ForEach((property) =>
+            {
+                //PropertyList.Children.Add(new PropertyEntry(property.Name));
+                PropertyList.Children.Add(new PropertyEntry(property.Name));
+            });
+            
+        }
+
+        private PropertyInfo[] findVaryingFields()
+        {
+            PropertyInfo[] sourceProperties = PersonToEdit.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            Person selectedPersonType = (Person)ClassGenerator.CreatePersonClassFromString(personTypeSelection.SelectedValue.ToString());
             ModelConverter.convertSourceToTargetModel(PersonToEdit, selectedPersonType);
-            PropertyInfo[] info = selectedPersonType.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo[] targetProperties = selectedPersonType.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            return targetProperties.Where(targetProperty => !sourceProperties.Select(p => p.Name).Contains(targetProperty.Name)).ToArray();
         }
 
         private void save_Click(object sender, RoutedEventArgs e)

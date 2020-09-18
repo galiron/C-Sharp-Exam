@@ -68,6 +68,9 @@
     <Compile Include="Controls\PersonView.xaml.cs">
       <DependentUpon>PersonView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\PropertyEntry.xaml.cs">
+      <DependentUpon>PropertyEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Generators\ClassGenerator.cs" />
     <Compile Include="Models\AppState.cs" />
     <Compile Include="Models\IPropertyNotificator.cs" />
@@ -97,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\PersonView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\PropertyEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

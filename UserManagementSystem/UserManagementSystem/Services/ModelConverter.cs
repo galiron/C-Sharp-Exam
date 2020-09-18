@@ -16,14 +16,12 @@ namespace UserManagementSystem.Services
 
         public static T convertSourceToTargetModel<S, T>(S source, T target)
         {
-            Console.WriteLine(source.GetType());
             PropertyInfo[] sourceProperties = source.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             PropertyInfo[] targetProperties = target.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            Console.WriteLine(targetProperties[0] == sourceProperties[0]);
+            // Todo: Maybe check if name instead of instance has to be chekced
             PropertyInfo[] sharedProperties = sourceProperties.Where(sourceProperty
-                => targetProperties.Contains(sourceProperty)).ToArray();
+                => targetProperties.Select(p => p.Name).Contains(sourceProperty.Name)).ToArray();
             sharedProperties.ToList().ForEach(propertie => propertie.SetValue(target,propertie.GetValue(source)));
-            Console.WriteLine(target);
 
             //target = (T)Activator.CreateInstance(typeof(T), sharedProperties.ToList());
                //target.GetType().GetProperties().Single(prop => prop.Name == "Name").SetValue(sourceProperties[0].GetValue());
