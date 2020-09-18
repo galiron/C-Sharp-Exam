@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementSystem.Models;
 
 namespace UserManagementSystem.Services
 {
@@ -14,7 +15,7 @@ namespace UserManagementSystem.Services
 
         }
 
-        public static T convertSourceToTargetModel<S, T>(S source, T target)
+        public static T convertSourceToTargetModel<S, T>(S source, T target) where S : Person where T : Person
         {
             PropertyInfo[] sourceProperties = source.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             PropertyInfo[] targetProperties = target.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -22,9 +23,6 @@ namespace UserManagementSystem.Services
             PropertyInfo[] sharedProperties = sourceProperties.Where(sourceProperty
                 => targetProperties.Select(p => p.Name).Contains(sourceProperty.Name)).ToArray();
             sharedProperties.ToList().ForEach(propertie => propertie.SetValue(target,propertie.GetValue(source)));
-
-            //target = (T)Activator.CreateInstance(typeof(T), sharedProperties.ToList());
-               //target.GetType().GetProperties().Single(prop => prop.Name == "Name").SetValue(sourceProperties[0].GetValue());
             return target;
         }
     }

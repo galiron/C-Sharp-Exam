@@ -17,6 +17,17 @@ namespace UserManagementSystem.Models
         {
         }
 
+        public override Person copyPerson(Person instanceToCopy)
+        {
+            instanceToCopy.Name = this.Name;
+            instanceToCopy.SurName = this.SurName;
+            instanceToCopy.Age = this.Age;
+            instanceToCopy.EyeColor = this.EyeColor;
+            instanceToCopy.Height = this.Height;
+            instanceToCopy.Weight = this.Weight;
+            return instanceToCopy;
+        }
+
         public Student(List<PropertyInfo> properties): base(properties)
         {
             properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));

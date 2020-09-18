@@ -18,7 +18,7 @@ namespace UserManagementSystem.Models
         }
         public Person() { }
 
-        public Person copyPerson(Person instanceToCopy)
+        virtual public Person copyPerson(Person instanceToCopy)
         {
             instanceToCopy._name = this._name;
             instanceToCopy._surname = this._surname;
@@ -49,7 +49,7 @@ namespace UserManagementSystem.Models
         public string Name
         {
             get => _name;
-            set { SetField(ref _name, value, "Name"); }
+            set { SetField(ref _name, value, "Name"); Console.WriteLine(_name);}
 
         }
 

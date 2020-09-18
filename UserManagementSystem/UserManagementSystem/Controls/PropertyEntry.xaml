@@ -11,8 +11,8 @@
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition></ColumnDefinition>
             </Grid.ColumnDefinitions>
-        <Label x:Name="PropertyLabel" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <TextBox x:Name="PropertyInput" Text="" Grid.Column="1" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <Label x:Name="PropertyLabel" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center" Height="26" Margin="0,13,0,14" Width="80"/>
+        <TextBox Name="PropertyInput" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="0,15" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
 
     </Grid>
 </UserControl>

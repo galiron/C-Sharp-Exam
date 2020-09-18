@@ -24,15 +24,20 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class PropertyEntry : UserControl
     {
-        public PropertyEntry(string labelName)
+        Binding propertyBinding = new Binding();
+        public PropertyEntry(Person dataSourceToBind, string propertyName)
         {
-            Binding propertyBinding = new Binding(); 
-            propertyBinding.Source = new RelativeSource(RelativeSourceMode.FindAncestor, typeof(PersonView), 1);
-            propertyBinding.Path = new PropertyPath("PersonToEdit.Name");
-            propertyBinding.Mode = BindingMode.TwoWay;
+            Person PersonToEdit = dataSourceToBind;
+            DataContext = dataSourceToBind;
+            propertyBinding = new Binding();
             InitializeComponent();
-            //this.PropertyLabel.Content = labelName;
-            this.PropertyInput.SetBinding(TextBlock.TextProperty, propertyBinding); // <--- How do I apply this binding to my Input
+            propertyBinding.Source = dataSourceToBind;
+            propertyBinding.Path = new PropertyPath(propertyName);
+            propertyBinding.Mode = BindingMode.TwoWay;
+            propertyBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            BindingOperations.SetBinding(PropertyInput, TextBox.TextProperty, propertyBinding);
+            this.PropertyLabel.Content = propertyName;
+            dataSourceToBind.OnPropertyChanged(propertyName);
         }
     }
 }
