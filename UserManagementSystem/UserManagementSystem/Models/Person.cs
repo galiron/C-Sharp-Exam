@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementSystem.Services;
 
 namespace UserManagementSystem.Models
 {
@@ -20,13 +21,7 @@ namespace UserManagementSystem.Models
 
         virtual public Person copyPerson(Person instanceToCopy)
         {
-            instanceToCopy._name = this._name;
-            instanceToCopy._surname = this._surname;
-            instanceToCopy._age = this._age;
-            instanceToCopy._eyeColor = this._eyeColor;
-            instanceToCopy._height = this._height;
-            instanceToCopy._weight = this._weight;
-            return instanceToCopy;
+            return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
         }
 
         public Person(List<PropertyInfo> properties)

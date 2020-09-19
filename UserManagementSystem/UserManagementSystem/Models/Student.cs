@@ -4,6 +4,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementSystem.Collections;
+using UserManagementSystem.Generators;
+using UserManagementSystem.Services;
 
 namespace UserManagementSystem.Models
 {
@@ -19,13 +22,7 @@ namespace UserManagementSystem.Models
 
         public override Person copyPerson(Person instanceToCopy)
         {
-            instanceToCopy.Name = this.Name;
-            instanceToCopy.SurName = this.SurName;
-            instanceToCopy.Age = this.Age;
-            instanceToCopy.EyeColor = this.EyeColor;
-            instanceToCopy.Height = this.Height;
-            instanceToCopy.Weight = this.Weight;
-            return instanceToCopy;
+            return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
         }
 
         public Student(List<PropertyInfo> properties): base(properties)

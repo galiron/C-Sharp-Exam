@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using UserManagementSystem.Services;
 
 namespace UserManagementSystem.Models
 {
@@ -16,6 +17,11 @@ namespace UserManagementSystem.Models
         public Lecturer() : base()
         {
 
+        }
+
+        public override Person copyPerson(Person instanceToCopy)
+        {
+            return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
         }
 
         public Lecturer(List<PropertyInfo> properties) : base(properties)

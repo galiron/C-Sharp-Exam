@@ -39,6 +39,6 @@
             <Button x:Name="cancel" Content="Cancel" HorizontalAlignment="Center" VerticalAlignment="Center" Width="75"  Grid.Column="1" Click="cancel_Click"/>
 
         </Grid>
-        <StackPanel x:Name="PropertyList"  Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" Grid.RowSpan="8" VerticalAlignment="Top"/>
+        <WrapPanel x:Name="PropertyList"  Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Left" Grid.Row="2" Grid.RowSpan="6" VerticalAlignment="Top" Orientation="Vertical"/>
     </Grid>
 </Window>

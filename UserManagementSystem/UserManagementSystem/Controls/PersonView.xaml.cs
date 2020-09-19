@@ -58,7 +58,7 @@ namespace UserManagementSystem.Controls
             }
             personTypeSelection.SelectedItem = currentPersonTypeKey != "" ? currentPersonTypeKey : "Person";
 
-            personTypeSelection.SelectionChanged += new SelectionChangedEventHandler(onUpdateUserControl);
+            personTypeSelection.DropDownClosed += new EventHandler(onUpdateUserControl);
             updateUserControl();
         }
 
@@ -79,23 +79,21 @@ namespace UserManagementSystem.Controls
 
         private void instanciatePropertyEntries(PropertyInfo[] propertiesToInstanciate)
         {
-            PropertyInfo[] sourceProperties = PersonToEdit.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            Person personWithAlteredType =
-                PersonToEdit.copyPerson(
-                    (Person)ClassGenerator.CreatePersonClassFromString(personTypeSelection.Text));
-            sourceProperties.ToList().ForEach((property) =>
+            propertiesToInstanciate.ToList().ForEach((property) =>
             {
-                PropertyList.Children.Add(new PropertyEntry(personWithAlteredType, property.Name));
+                PropertyList.Children.Add(new PropertyEntry(PersonToEdit, property.Name));
             });
         }
 
-        private void onUpdateUserControl(object sender, SelectionChangedEventArgs e)
+        private void onUpdateUserControl(object sender, EventArgs e)
         {
             updateUserControl();
 
         }
         private void updateUserControl()
         {
+            PersonToEdit =  PersonToEdit.copyPerson(
+                    (Person)ClassGenerator.CreatePersonClassFromString(personTypeSelection.Text));
             PropertyList.Children.Clear();
             updateUserControlByCommonClassFields();
             updateUserControlByUniqueClassFields();
@@ -105,35 +103,34 @@ namespace UserManagementSystem.Controls
         // could've abstracted those two functions because they're pretty similar but it would cause confusion due to no fitting naming
         private PropertyInfo[] findVaryingFields()
         {
-            PropertyInfo[] sourceProperties = PersonToEdit.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo[] sourceProperties = _backupPerson.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             Person selectedPersonType = (Person)ClassGenerator.CreatePersonClassFromString(personTypeSelection.SelectedValue.ToString());
-            ModelConverter.convertSourceToTargetModel(PersonToEdit, selectedPersonType);
+            ModelConverter.convertSourceToTargetModel(_backupPerson, selectedPersonType);
             PropertyInfo[] targetProperties = selectedPersonType.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
-            return targetProperties.Where(targetProperty => !sourceProperties.Select(p => p.Name).Contains(targetProperty.Name)).ToArray();
+            PropertyInfo[] sharedProperties = targetProperties.Where(targetProperty => !sourceProperties.Select(p => p.Name).Contains(targetProperty.Name)).ToArray();
+            // can't return at previous line because the inversion by ! would get ignored bug
+            return sharedProperties;
         }
 
         private PropertyInfo[] findCommonFields()
         {
-            PropertyInfo[] sourceProperties = PersonToEdit.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+            PropertyInfo[] sourceProperties = _backupPerson.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             Person selectedPersonType = (Person)ClassGenerator.CreatePersonClassFromString(personTypeSelection.SelectedValue.ToString());
-            ModelConverter.convertSourceToTargetModel(PersonToEdit, selectedPersonType);
+            ModelConverter.convertSourceToTargetModel(_backupPerson, selectedPersonType);
             PropertyInfo[] targetProperties = selectedPersonType.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             return targetProperties.Where(targetProperty => sourceProperties.Select(p => p.Name).Contains(targetProperty.Name)).ToArray();
         }
 
         private void save_Click(object sender, RoutedEventArgs e)
         {
-            // the copy step is necessary because the Instance of PersonToEdit is not allways the target instance (polymorphism)
-            Person newPerson =
-                PersonToEdit.copyPerson(
-                    (Person)ClassGenerator.CreatePersonClassFromString(personTypeSelection.Text));
+
             if (this._indexOfPersonInAppStatePersonCollection == -1)
             {
-                AppState.Persons.Add(newPerson);
+                AppState.Persons.Add(PersonToEdit);
             }
             else
             {
-                AppState.Persons[_indexOfPersonInAppStatePersonCollection] = newPerson;
+                AppState.Persons[_indexOfPersonInAppStatePersonCollection] = PersonToEdit;
             }
 
             this.Close();
