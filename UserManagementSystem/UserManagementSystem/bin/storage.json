@@ -1,0 +1,25 @@
+{
+  "$type": "UserManagementSystem.Collections.PersonCollection, UserManagementSystem",
+  "$values": [
+    {
+      "$type": "UserManagementSystem.Models.Person, UserManagementSystem",
+      "Name": "asd",
+      "SurName": "asd",
+      "Age": "asd",
+      "EyeColor": "sad",
+      "Height": "asd",
+      "Weight": "asd"
+    },
+    {
+      "$type": "UserManagementSystem.Models.Student, UserManagementSystem",
+      "AverageGrade": "11",
+      "MatriculationNumber": "1233",
+      "Name": "fg",
+      "SurName": "ff",
+      "Age": "asd",
+      "EyeColor": "asd",
+      "Height": "123",
+      "Weight": "123"
+    }
+  ]
+}

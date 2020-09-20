@@ -14,6 +14,7 @@ namespace UserManagementSystem.Models
         public static PersonCollection Persons
         {
             get => _personCollection;
+            set => _personCollection = value;
         }
     }
 }
