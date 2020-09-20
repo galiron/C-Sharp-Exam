@@ -77,5 +77,11 @@ namespace UserManagementSystem.Controls
             string path = @"./../storage.json";
             File.WriteAllText(@"./../storage.json", serializedJson);
         }
+
+        private void manageFilter_Click(object sender, RoutedEventArgs e)
+        {
+            Window filterOverview = new FilterOverview();
+            filterOverview.Show();
+        }
     }
 }

@@ -18,10 +18,12 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="newUser" Content="Add new Person" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Click="newUser_Click"/>
-            <Button x:Name="importUsers" Content="Import Users" Grid.Column="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Click="importUsers_Click"/>
-            <Button x:Name="exportUsers" Content="Export Users" Grid.Column="2" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Click="exportUsers_Click"/>
+            <Button x:Name="newUser" Content="Add new Person" Grid.Column="0" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Click="newUser_Click"/>
+            <Button x:Name="manageFilter" Content="Manage Filter" Grid.Column="1" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Click="manageFilter_Click"/>
+            <Button x:Name="importUsers" Content="Import Users" Grid.Column="2" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Click="importUsers_Click"/>
+            <Button x:Name="exportUsers" Content="Export Users" Grid.Column="3" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75" Click="exportUsers_Click"/>
         </Grid>
         <WrapPanel Name="PersonTable" HorizontalAlignment="Left" VerticalAlignment="Top" Orientation="Vertical"/>
 

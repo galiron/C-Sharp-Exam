@@ -10,8 +10,8 @@ namespace UserManagementSystem.Models
 {
     abstract class UniversityMember: Person
     {
-        private string _matriculationnumber;
-        public UniversityMember(string matriculationNumber, string name, string surname): base(name, surname)
+        private int _matriculationnumber;
+        public UniversityMember(int matriculationNumber, string name, string surname): base(name, surname)
         {
             this.MatriculationNumber = matriculationNumber;
         }
@@ -31,7 +31,7 @@ namespace UserManagementSystem.Models
             properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));
         }
 
-        public string MatriculationNumber
+        public int MatriculationNumber
         {
             get => _matriculationnumber;
             set => SetField(ref _matriculationnumber, value, "MatriculationNumber");

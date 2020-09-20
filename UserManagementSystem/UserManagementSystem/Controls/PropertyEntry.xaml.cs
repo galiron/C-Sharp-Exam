@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Net.Mime;
 using System.Reflection;
@@ -24,17 +25,16 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class PropertyEntry : UserControl
     {
-        Binding propertyBinding = new Binding();
+        private Binding propertyBinding;
         public PropertyEntry(Person dataSourceToBind, string propertyName)
         {
-            Person PersonToEdit = dataSourceToBind;
             DataContext = dataSourceToBind;
             propertyBinding = new Binding();
             InitializeComponent();
             propertyBinding.Source = dataSourceToBind;
             propertyBinding.Path = new PropertyPath(propertyName);
             propertyBinding.Mode = BindingMode.TwoWay;
-            propertyBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+            propertyBinding.UpdateSourceTrigger = UpdateSourceTrigger.Default;
             BindingOperations.SetBinding(PropertyInput, TextBox.TextProperty, propertyBinding);
             this.PropertyLabel.Content = propertyName;
             dataSourceToBind.OnPropertyChanged(propertyName);

@@ -35,12 +35,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MoreLinq, Version=3.3.2.0, Culture=neutral, PublicKeyToken=384d532d7e88985d, processorArchitecture=MSIL">
+      <HintPath>..\packages\morelinq.3.3.2\lib\net451\MoreLinq.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +68,9 @@
     </ApplicationDefinition>
     <Compile Include="Collections\PersonCollection.cs" />
     <Compile Include="Collections\PersonModelDictionary.cs" />
+    <Compile Include="Controls\FilterEntry.xaml.cs">
+      <DependentUpon>FilterEntry.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\FilterOverview.xaml.cs">
       <DependentUpon>FilterOverview.xaml</DependentUpon>
     </Compile>
@@ -79,12 +88,17 @@
     </Compile>
     <Compile Include="Generators\ClassGenerator.cs" />
     <Compile Include="Models\AppState.cs" />
+    <Compile Include="Models\Filter.cs" />
     <Compile Include="Models\IPropertyNotificator.cs" />
     <Compile Include="Models\Lecturer.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\UniversityMember.cs" />
     <Compile Include="Services\ModelConverter.cs" />
     <Compile Include="Utility\Helper.cs" />
+    <Page Include="Controls\FilterEntry.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\FilterOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

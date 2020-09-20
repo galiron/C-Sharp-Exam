@@ -24,3 +24,12 @@ E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\Newtonsoft.Json.dll
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\Newtonsoft.Json.xml
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\UserManagementSystem.csproj.CopyComplete
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\FilterEntry.g.cs
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\FilterOverview.g.cs
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\FilterEntry.baml
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\FilterOverview.baml
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\MoreLinq.dll
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\System.ValueTuple.dll
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\MoreLinq.pdb
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\MoreLinq.xml
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\System.ValueTuple.xml

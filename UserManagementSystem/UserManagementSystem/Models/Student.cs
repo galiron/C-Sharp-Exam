@@ -12,7 +12,7 @@ namespace UserManagementSystem.Models
 {
     class Student: UniversityMember
     {
-        public Student(string matriculationNumber, string name, string surname): base(matriculationNumber, name, surname)
+        public Student(int matriculationNumber, string name, string surname): base(matriculationNumber, name, surname)
         {
         }
 
