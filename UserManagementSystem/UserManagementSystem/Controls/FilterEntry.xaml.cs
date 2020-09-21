@@ -33,23 +33,8 @@ namespace UserManagementSystem.Controls
         private Binding comparatorValueToCompareBinding;
         private PropertyInfo[] allProperties;
         private Type propertyType;
-        private string _propertyName;
-        private string _comparator;
-        private Object _valueToCompare;
+        private Filter newEntry;
 
-        public object PropertyName
-        {
-            get => _propertyName;
-        }
-
-        public object ValueToCompare
-        {
-            get => _valueToCompare;
-        }
-        public string Comparator
-        {
-            get => _comparator;
-        }
 
 
         public FilterEntry()
@@ -62,34 +47,39 @@ namespace UserManagementSystem.Controls
 
         public FilterEntry(Filter dataSourceToBind)
         {
+            newEntry = new Filter
+            {
+                ValueToCompare = dataSourceToBind.ValueToCompare,
+                Comparator = dataSourceToBind.Comparator,
+                PropertyName = dataSourceToBind.PropertyName
+            };
             InitializeComponent();
             InitializePropertySelection();
             PropertyNameComboBox.SelectionChanged += onPropertyNameComboBoxChanged;
             ComparatorComboBox.SelectionChanged += onComparatorBoxChanged;
 
-            DataContext = dataSourceToBind;
             propertyBinding = new Binding
             {
-                Source = dataSourceToBind,
+                Source = newEntry,
                 Path = new PropertyPath("PropertyName"),
                 Mode = BindingMode.TwoWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.Default
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
 
             comparatorBinding = new Binding
             {
-                Source = dataSourceToBind,
+                Source = newEntry,
                 Path = new PropertyPath("Comparator"),
                 Mode = BindingMode.TwoWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.Default
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
 
             comparatorValueToCompareBinding = new Binding
             {
-                Source = dataSourceToBind,
+                Source = newEntry,
                 Path = new PropertyPath("ValueToCompare"),
                 Mode = BindingMode.TwoWay,
-                UpdateSourceTrigger = UpdateSourceTrigger.Default
+                UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
 
             BindingOperations.SetBinding(PropertyNameComboBox, ComboBox.TextProperty, propertyBinding);
@@ -98,7 +88,6 @@ namespace UserManagementSystem.Controls
             dataSourceToBind.OnPropertyChanged("PropertyName");
             dataSourceToBind.OnPropertyChanged("Comparator");
             dataSourceToBind.OnPropertyChanged("ValueToCompare");
-            Console.WriteLine(AppState.Filters);
         }
 
         private void InitializePropertySelection()
@@ -167,7 +156,7 @@ namespace UserManagementSystem.Controls
         private void onPropertyNameComboBoxChanged(object sender, SelectionChangedEventArgs e)
         {
             PropertyValueTextBox.IsEnabled = false;
-            _comparator = "";
+            ComparatorComboBox.Text="";
         }
 
         private void onComparatorBoxChanged(object sender, SelectionChangedEventArgs e)
@@ -175,28 +164,5 @@ namespace UserManagementSystem.Controls
             PropertyValueTextBox.IsEnabled = true;
         }
 
-        private void PropertyValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            /*try
-            {
-                switch (propertyType.ToString())
-                {
-                    case "System.String":
-                        _valueToCompare = PropertyValueTextBox.Text;
-                        break;
-                    case "System.Double":
-                        _valueToCompare = Convert.ToDouble(PropertyValueTextBox.Text);
-                        break;
-                    case "System.Int32":
-                        _valueToCompare = Convert.ToInt32(PropertyValueTextBox.Text);
-                        break;
-                }
-            }
-            catch (Exception error)
-            {
-                Console.WriteLine("Could not convert PeopertyValue of textbox to target Type");
-                Console.Write(error);
-            }*/
-        }
     }
 }

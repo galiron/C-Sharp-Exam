@@ -2,24 +2,26 @@
   "$type": "UserManagementSystem.Collections.PersonCollection, UserManagementSystem",
   "$values": [
     {
-      "$type": "UserManagementSystem.Models.Person, UserManagementSystem",
-      "Name": "asd",
-      "SurName": "asd",
-      "Age": "asd",
-      "EyeColor": "sad",
-      "Height": "asd",
-      "Weight": "asd"
+      "$type": "UserManagementSystem.Models.Student, UserManagementSystem",
+      "AverageGrade": 1.7,
+      "MatriculationNumber": 924573,
+      "Name": "Erik",
+      "SurName": "Bannasch",
+      "Age": 25,
+      "EyeColor": "Blue",
+      "Height": 185.0,
+      "Weight": 76.0
     },
     {
-      "$type": "UserManagementSystem.Models.Student, UserManagementSystem",
-      "AverageGrade": "11",
-      "MatriculationNumber": "1233",
-      "Name": "fg",
-      "SurName": "ff",
-      "Age": "asd",
-      "EyeColor": "asd",
-      "Height": "123",
-      "Weight": "123"
+      "$type": "UserManagementSystem.Models.Lecturer, UserManagementSystem",
+      "Salary": 3500.37,
+      "MatriculationNumber": 945232,
+      "Name": "Max",
+      "SurName": "Mustermann",
+      "Age": 16,
+      "EyeColor": "Brown",
+      "Height": 197.0,
+      "Weight": 98.0
     }
   ]
 }

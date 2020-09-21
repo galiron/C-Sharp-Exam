@@ -16,9 +16,9 @@
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
 
-        <ComboBox Height="26" Name="PropertyNameComboBox" Grid.Column="0" MinWidth="50" Width="120" SelectionChanged="enableComparator"></ComboBox>
-        <ComboBox Height="26" Name="ComparatorComboBox" Grid.Column="2" MinWidth="40" Width="40" IsEnabled="False"></ComboBox>
-        <TextBox  Height="26" Name="PropertyValueTextBox" Grid.Column="4" MinWidth="50" Width="120" IsEnabled="False" TextChanged="PropertyValue_TextChanged"></TextBox>
+        <ComboBox Height="26" x:Name="PropertyNameComboBox" Grid.Column="0" MinWidth="50" Width="120" SelectionChanged="enableComparator"></ComboBox>
+        <ComboBox Height="26" x:Name="ComparatorComboBox" Grid.Column="2" MinWidth="80" Width="80" IsEnabled="False"></ComboBox>
+        <TextBox  Height="26" x:Name="PropertyValueTextBox" Grid.Column="4" MinWidth="50" Width="120" IsEnabled="False"></TextBox>
 
 
     </Grid>

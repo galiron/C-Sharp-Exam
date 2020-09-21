@@ -21,7 +21,7 @@
             </Grid.ColumnDefinitions>
             <Button Grid.Column="0" x:Name="addFilter" Content="AddFilter" Click="AddFilter_Click" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
             <Button Grid.Column="1" x:Name="saveButton" Content="Save" Click="saveButton_Click" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
-            <Button Grid.Column="2" x:Name="closeButton" Content="Close" Click="AddFilter_Click" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
+            <Button Grid.Column="2" x:Name="closeButton" Content="Close" Click="closeButton_Click" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
         </Grid>
 
         <Label x:Name="label" Grid.Row="0" Content="Filter" Margin="351,0" VerticalAlignment="Top" FontSize="36" FontFamily="Arial" HorizontalAlignment="Center" MinHeight="51" Height="51" Width="90"/>

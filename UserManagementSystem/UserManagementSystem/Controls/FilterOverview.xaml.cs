@@ -21,32 +21,50 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class FilterOverview : Window
     {
-        private List<Filter> filters;
+        static public event Action filtersClosed;
+        private List<Filter> filters = new List<Filter>();
         public FilterOverview()
         {
-            filters = AppState.Filters;
             InitializeComponent();
             initFilters();
         }
 
         private void initFilters()
         {
-            filters.ForEach(filter =>
+            AppState.Filters.ForEach(filter =>
             {
                 filtersPanel.Children.Add(new FilterEntry(filter));
             });
         }
 
         private void AddFilter_Click(object sender, RoutedEventArgs e)
-        {
-            Filter newFilter = new Filter();
+        { Filter newFilter = new Filter();
             filtersPanel.Children.Add(new FilterEntry(newFilter));
             filters.Add(newFilter);
         }
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
+            filters.Clear();
+            
+            foreach (FilterEntry child in filtersPanel.Children)
+            {
+                Filter nF = new Filter();
+                nF.ValueToCompare = child.PropertyValueTextBox.Text;
+                nF.PropertyName = child.PropertyNameComboBox.Text;
+                nF.Comparator = child.ComparatorComboBox.Text;
+                filters.Add(nF);
+            }
+            
             AppState.Filters = filters;
+            filtersClosed();
+            this.Close();
+        }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            filtersClosed();
+            this.Close();
         }
     }
 }

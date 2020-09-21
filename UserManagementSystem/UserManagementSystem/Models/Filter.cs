@@ -16,6 +16,7 @@ namespace UserManagementSystem.Models
         {
 
         }
+
         public Filter(string comparator, Object valueToCompare)
         {
             this._comparator = comparator;

@@ -34,10 +34,10 @@ namespace UserManagementSystem.Models
         // it would use 0 as default and would not allow any other information in those textboxes. 
         private string _name;
         private string _surname;
-        private string _age;
+        private int _age;
         private string _eyeColor;
-        private string _height;
-        private string _weight;
+        private double _height;
+        private double _weight;
 
 
         // properties handling private fields
@@ -54,7 +54,7 @@ namespace UserManagementSystem.Models
             set { SetField(ref _surname, value, "SurName"); }
         }
 
-        public string Age
+        public int Age
         {
             get => _age;
             set { SetField(ref _age, value, "Age"); }
@@ -66,13 +66,13 @@ namespace UserManagementSystem.Models
             set { SetField(ref _eyeColor, value, "EyeColor"); }
         }
 
-        public string Height
+        public double Height
         {
             get => _height;
             set { SetField(ref _height, value, "Height"); }
         }
 
-        public string Weight
+        public double Weight
         {
             get => _weight;
             set { SetField(ref _weight, value, "Weight"); }

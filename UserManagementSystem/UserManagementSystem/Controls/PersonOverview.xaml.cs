@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -32,6 +33,7 @@ namespace UserManagementSystem.Controls
 
         public PersonOverview()
         {
+            FilterOverview.filtersClosed += updatePersonTable;
             PersonCollection.personAdded += updatePersonTable;
             PersonCollection.personSet += updatePersonTable;
             PersonCollection.personremoved += updatePersonTable;
@@ -41,8 +43,53 @@ namespace UserManagementSystem.Controls
 
         public void updatePersonTable()
         {
+            List<Filter> filters = AppState.Filters;
             PersonTable.Children.RemoveRange(0,PersonTable.Children.Count);
-            AppState.Persons.ToList().ForEach(p => PersonTable.Children.Add(new PersonEntry(p)));
+            AppState.Persons.ToList().ForEach(p =>
+            {
+                if(filterCanBeApplied(p,filters))
+                PersonTable.Children.Add(new PersonEntry(p));
+            });
+        }
+
+        private bool filterCanBeApplied(Person personToFilter, List<Filter> allFilters)
+        {
+            PropertyInfo[] propertiesOfPerson = personToFilter.GetType().GetProperties();
+            List<bool> filtersCouldBeApplied = new List<bool>();
+            allFilters.ForEach( filter => {
+                PropertyInfo match = propertiesOfPerson.Where(prop => prop.Name == filter.PropertyName).FirstOrDefault();
+                if (match == null)
+                {
+                    filtersCouldBeApplied.Add(false);
+                }
+                else
+                {
+                    switch (filter.Comparator)
+                    {
+                        case ">":
+                            filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) > Convert.ToDouble((filter.ValueToCompare)));
+                            break;
+                        case "<":
+                            filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) < Convert.ToDouble((filter.ValueToCompare)));
+                            break;
+                        case "=":
+                            filtersCouldBeApplied.Add(match.GetValue(personToFilter).Equals(filter.ValueToCompare));
+                            break;
+                        case "Contains":
+                            filtersCouldBeApplied.Add(match.GetValue(personToFilter).ToString().Contains(Convert.ToString(filter.ValueToCompare)));
+                            break;
+                    }
+                }
+            });
+            bool isInvalid = filtersCouldBeApplied.Contains(false);
+            if (isInvalid)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void newUser_Click(object sender, RoutedEventArgs e)
