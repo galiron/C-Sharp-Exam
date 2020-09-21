@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,8 +23,10 @@ namespace UserManagementSystem.Controls
     public partial class PersonEntry : UserControl
     {
         private Person _person;
-        public PersonEntry(Person person)
+        private PersonOverview _parent;
+        public PersonEntry(Person person, PersonOverview parent)
         {
+            _parent = parent;
             _person = person;
             InitializeComponent();
             this.userLabel.Content =_person.Name + " " +_person.SurName;
@@ -34,6 +37,12 @@ namespace UserManagementSystem.Controls
         {
             PersonView personView = new PersonView(_person);
             personView.Show();
+        }
+
+        private void deleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            _parent.removeEntry(this);
+            AppState.Persons.Remove(_person);
         }
     }
 }

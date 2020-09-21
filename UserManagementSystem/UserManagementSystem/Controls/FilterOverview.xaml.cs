@@ -33,13 +33,13 @@ namespace UserManagementSystem.Controls
         {
             AppState.Filters.ForEach(filter =>
             {
-                filtersPanel.Children.Add(new FilterEntry(filter));
+                filtersPanel.Children.Add(new FilterEntry(filter,this));
             });
         }
 
         private void AddFilter_Click(object sender, RoutedEventArgs e)
         { Filter newFilter = new Filter();
-            filtersPanel.Children.Add(new FilterEntry(newFilter));
+            filtersPanel.Children.Add(new FilterEntry(newFilter, this));
             filters.Add(newFilter);
         }
 
@@ -65,6 +65,11 @@ namespace UserManagementSystem.Controls
         {
             filtersClosed();
             this.Close();
+        }
+
+        public void removeEntryFromWrapper(UIElement itemToRemove)
+        {
+            this.filtersPanel.Children.Remove(itemToRemove);
         }
     }
 }

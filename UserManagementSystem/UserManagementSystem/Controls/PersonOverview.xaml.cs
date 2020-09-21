@@ -48,7 +48,7 @@ namespace UserManagementSystem.Controls
             AppState.Persons.ToList().ForEach(p =>
             {
                 if(filterCanBeApplied(p,filters))
-                PersonTable.Children.Add(new PersonEntry(p));
+                PersonTable.Children.Add(new PersonEntry(p, this));
             });
         }
 
@@ -67,13 +67,38 @@ namespace UserManagementSystem.Controls
                     switch (filter.Comparator)
                     {
                         case ">":
-                            filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) > Convert.ToDouble((filter.ValueToCompare)));
+                            try
+                            {
+                                filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) >
+                                                          Convert.ToDouble((filter.ValueToCompare)));
+                            }
+                            catch (Exception e)
+                            {
+                                filtersCouldBeApplied.Add(true);
+                            }
+
                             break;
                         case "<":
-                            filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) < Convert.ToDouble((filter.ValueToCompare)));
+                            try
+                            {
+                                filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) <
+                                                          Convert.ToDouble((filter.ValueToCompare)));
+                            }
+                            catch (Exception e)
+                            {
+                                filtersCouldBeApplied.Add(true);
+                            };
                             break;
                         case "=":
-                            filtersCouldBeApplied.Add(match.GetValue(personToFilter).Equals(filter.ValueToCompare));
+                            try
+                            {
+                                filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) ==
+                                                          Convert.ToDouble((filter.ValueToCompare)));
+                            }
+                            catch (Exception e)
+                            {
+                                filtersCouldBeApplied.Add(true);
+                            }
                             break;
                         case "Contains":
                             filtersCouldBeApplied.Add(match.GetValue(personToFilter).ToString().Contains(Convert.ToString(filter.ValueToCompare)));
@@ -129,6 +154,11 @@ namespace UserManagementSystem.Controls
         {
             Window filterOverview = new FilterOverview();
             filterOverview.Show();
+        }
+
+        public void removeEntry(PersonEntry personEntry)
+        {
+            this.PersonTable.Children.Remove(personEntry);
         }
     }
 }

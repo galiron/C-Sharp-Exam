@@ -34,6 +34,7 @@ namespace UserManagementSystem.Controls
         private PropertyInfo[] allProperties;
         private Type propertyType;
         private Filter newEntry;
+        private FilterOverview _parent;
 
 
 
@@ -45,8 +46,9 @@ namespace UserManagementSystem.Controls
             ComparatorComboBox.SelectionChanged += onComparatorBoxChanged;
         }
 
-        public FilterEntry(Filter dataSourceToBind)
+        public FilterEntry(Filter dataSourceToBind, FilterOverview parent)
         {
+            _parent = parent;
             newEntry = new Filter
             {
                 ValueToCompare = dataSourceToBind.ValueToCompare,
@@ -164,5 +166,9 @@ namespace UserManagementSystem.Controls
             PropertyValueTextBox.IsEnabled = true;
         }
 
+        private void RemoveButton_Click(object sender, RoutedEventArgs e)
+        {
+            _parent.removeEntryFromWrapper(this);
+        }
     }
 }

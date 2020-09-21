@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UserManagementSystem"
         xmlns:controls="clr-namespace:UserManagementSystem.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Person Data Management System" Height="450" Width="800">
 
     <Grid>
         <Grid.RowDefinitions>
