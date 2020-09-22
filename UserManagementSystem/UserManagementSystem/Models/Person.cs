@@ -21,7 +21,7 @@ namespace UserManagementSystem.Models
         public string Name
         {
             get => _name;
-            set { SetField(ref _name, value, "Name"); Console.WriteLine(_name); }
+            set { SetField(ref _name, value, "Name");}
 
         }
 
@@ -65,11 +65,6 @@ namespace UserManagementSystem.Models
         virtual public Person copyPerson(Person instanceToCopy)
         {
             return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
-        }
-
-        public Person(List<PropertyInfo> properties)
-        {
-            properties.ForEach(propertie => Console.WriteLine(propertie));
         }
     }
 }

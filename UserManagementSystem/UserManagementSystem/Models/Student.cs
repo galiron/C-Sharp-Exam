@@ -12,7 +12,6 @@ namespace UserManagementSystem.Models
 {
     class Student: UniversityMember
     {
-
         private double _averageGrade;
 
         public double AverageGrade
@@ -32,11 +31,6 @@ namespace UserManagementSystem.Models
         public override Person copyPerson(Person instanceToCopy)
         {
             return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
-        }
-
-        public Student(List<PropertyInfo> properties): base(properties)
-        {
-            properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));
         }
     }
 }

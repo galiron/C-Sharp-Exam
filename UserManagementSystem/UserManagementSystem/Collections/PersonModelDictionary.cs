@@ -4,7 +4,6 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using UserManagementSystem.Utility;
 
 namespace UserManagementSystem.Collections
 {
@@ -25,9 +24,9 @@ namespace UserManagementSystem.Collections
             {
                 retrievedValue = personClassDictionary[key];
             }
-            catch(Exception e)
+            catch(Exception exception)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(exception);
             }
 
             return retrievedValue;

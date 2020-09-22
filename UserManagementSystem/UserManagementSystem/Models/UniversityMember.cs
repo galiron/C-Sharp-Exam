@@ -32,10 +32,5 @@ namespace UserManagementSystem.Models
         {
             return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
         }
-
-        public UniversityMember(List<PropertyInfo> properties) : base(properties)
-        {
-            properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));
-        }
     }
 }

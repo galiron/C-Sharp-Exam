@@ -94,7 +94,6 @@
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\UniversityMember.cs" />
     <Compile Include="Services\ModelConverter.cs" />
-    <Compile Include="Utility\Helper.cs" />
     <Page Include="Controls\FilterEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

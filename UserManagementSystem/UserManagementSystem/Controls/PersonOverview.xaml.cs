@@ -115,8 +115,8 @@ namespace UserManagementSystem.Controls
 
 
            
-            bool isInvalid = filtersCouldBeApplied.Contains(false);
-            if (isInvalid)
+            bool isValid = filtersCouldBeApplied.Contains(false);
+            if (isValid)
             {
                 return false;
             }
@@ -161,7 +161,6 @@ namespace UserManagementSystem.Controls
                 Formatting = Formatting.Indented
         };
             string serializedJson = JsonConvert.SerializeObject(AppState.Persons, settings);
-            Console.WriteLine(serializedJson);
             string path = @"./../../Data/storage.json";
             File.WriteAllText(@"./../../Data/storage.json", serializedJson);
         }

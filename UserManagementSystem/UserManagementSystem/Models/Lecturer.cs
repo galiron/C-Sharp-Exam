@@ -10,8 +10,8 @@ namespace UserManagementSystem.Models
 {
     class Lecturer: UniversityMember
     {
-
         private double _salary;
+
         public double Salary
         {
             get => _salary;
@@ -30,11 +30,6 @@ namespace UserManagementSystem.Models
         public override Person copyPerson(Person instanceToCopy)
         {
             return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
-        }
-
-        public Lecturer(List<PropertyInfo> properties) : base(properties)
-        {
-            properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));
         }
     }
 }

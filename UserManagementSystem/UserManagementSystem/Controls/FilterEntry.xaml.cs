@@ -129,7 +129,6 @@ namespace UserManagementSystem.Controls
         private void InitializeComparatorValues()
         {
             PropertyInfo selectedProperty = _allProperties.First(prop => prop.Name == PropertyNameComboBox.SelectedValue);
-            Console.WriteLine(selectedProperty.PropertyType.ToString());
             _propertyType = selectedProperty.PropertyType;
             switch (_propertyType.ToString())
             {
