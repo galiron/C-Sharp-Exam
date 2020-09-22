@@ -29,8 +29,14 @@ namespace UserManagementSystem.Controls
     {
         private Type _currentPersonType = null;
         private int _indexOfPersonInAppStatePersonCollection;
-        public Person PersonToEdit { get; set; }
+        private Person _personToEdit;
         private Person _backupPerson;
+
+        public Person PersonToEdit
+        {
+            get => _personToEdit;
+            set => _personToEdit = value;
+        }
 
         public PersonView(Person person)
         {

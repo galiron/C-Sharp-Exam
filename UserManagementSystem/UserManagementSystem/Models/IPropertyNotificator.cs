@@ -11,6 +11,10 @@ namespace UserManagementSystem.Models
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Implemented interface function of INotifyPropertyChanged to react on property changes
+        /// </summary>
+        /// <param name="propertyName"></param>
         public virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

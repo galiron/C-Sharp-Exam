@@ -12,6 +12,15 @@ namespace UserManagementSystem.Models
 {
     class Student: UniversityMember
     {
+
+        private double _averageGrade;
+
+        public double AverageGrade
+        {
+            get => _averageGrade;
+            set => SetField(ref _averageGrade, value, "AverageGrade");
+        }
+
         public Student(int matriculationNumber, string name, string surname): base(matriculationNumber, name, surname)
         {
         }
@@ -28,14 +37,6 @@ namespace UserManagementSystem.Models
         public Student(List<PropertyInfo> properties): base(properties)
         {
             properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));
-        }
-
-        private double _averageGrade;
-
-        public double AverageGrade
-        {
-            get => _averageGrade;
-            set => SetField(ref _averageGrade, value, "AverageGrade");
         }
     }
 }

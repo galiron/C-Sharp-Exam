@@ -32,3 +32,4 @@ E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\MoreLinq.pdb
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\MoreLinq.xml
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\System.ValueTuple.xml
+E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\UserManagementSystem.csprojAssemblyReference.cache

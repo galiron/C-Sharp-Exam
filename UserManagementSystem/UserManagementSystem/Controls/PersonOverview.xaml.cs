@@ -29,7 +29,7 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class PersonOverview : UserControl
     {
-        private Window personView;
+        private Window _personView;
 
         public PersonOverview()
         {
@@ -129,8 +129,8 @@ namespace UserManagementSystem.Controls
         private void newUser_Click(object sender, RoutedEventArgs e)
         {
             Person newPerson = (Person) ClassGenerator.CreatePersonClassFromString("Person");
-            personView = new PersonView(newPerson);
-            personView.Show();
+            _personView = new PersonView(newPerson);
+            _personView.Show();
         }
 
         private void importUsers_Click(object sender, RoutedEventArgs e)

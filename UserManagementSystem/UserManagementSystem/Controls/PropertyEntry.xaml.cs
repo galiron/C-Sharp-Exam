@@ -25,17 +25,17 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class PropertyEntry : UserControl
     {
-        private Binding propertyBinding;
+        private Binding _propertyBinding;
         public PropertyEntry(Person dataSourceToBind, string propertyName)
         {
             DataContext = dataSourceToBind;
-            propertyBinding = new Binding();
+            _propertyBinding = new Binding();
             InitializeComponent();
-            propertyBinding.Source = dataSourceToBind;
-            propertyBinding.Path = new PropertyPath(propertyName);
-            propertyBinding.Mode = BindingMode.TwoWay;
-            propertyBinding.UpdateSourceTrigger = UpdateSourceTrigger.Default;
-            BindingOperations.SetBinding(PropertyInput, TextBox.TextProperty, propertyBinding);
+            _propertyBinding.Source = dataSourceToBind;
+            _propertyBinding.Path = new PropertyPath(propertyName);
+            _propertyBinding.Mode = BindingMode.TwoWay;
+            _propertyBinding.UpdateSourceTrigger = UpdateSourceTrigger.Default;
+            BindingOperations.SetBinding(PropertyInput, TextBox.TextProperty, _propertyBinding);
             this.PropertyLabel.Content = propertyName;
             dataSourceToBind.OnPropertyChanged(propertyName);
         }

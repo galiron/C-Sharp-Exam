@@ -28,12 +28,12 @@ namespace UserManagementSystem.Controls
     /// </summary>
     public partial class FilterEntry : UserControl
     {
-        private Binding propertyBinding;
-        private Binding comparatorBinding;
-        private Binding comparatorValueToCompareBinding;
-        private PropertyInfo[] allProperties;
-        private Type propertyType;
-        private Filter newEntry;
+        private Binding _propertyBinding;
+        private Binding _comparatorBinding;
+        private Binding _comparatorValueToCompareBinding;
+        private PropertyInfo[] _allProperties;
+        private Type _propertyType;
+        private Filter _newEntry;
         private FilterOverview _parent;
 
 
@@ -49,7 +49,7 @@ namespace UserManagementSystem.Controls
         public FilterEntry(Filter dataSourceToBind, FilterOverview parent)
         {
             _parent = parent;
-            newEntry = new Filter
+            _newEntry = new Filter
             {
                 ValueToCompare = dataSourceToBind.ValueToCompare,
                 Comparator = dataSourceToBind.Comparator,
@@ -60,33 +60,33 @@ namespace UserManagementSystem.Controls
             PropertyNameComboBox.SelectionChanged += onPropertyNameComboBoxChanged;
             ComparatorComboBox.SelectionChanged += onComparatorBoxChanged;
 
-            propertyBinding = new Binding
+            _propertyBinding = new Binding
             {
-                Source = newEntry,
+                Source = _newEntry,
                 Path = new PropertyPath("PropertyName"),
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
 
-            comparatorBinding = new Binding
+            _comparatorBinding = new Binding
             {
-                Source = newEntry,
+                Source = _newEntry,
                 Path = new PropertyPath("Comparator"),
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
 
-            comparatorValueToCompareBinding = new Binding
+            _comparatorValueToCompareBinding = new Binding
             {
-                Source = newEntry,
+                Source = _newEntry,
                 Path = new PropertyPath("ValueToCompare"),
                 Mode = BindingMode.TwoWay,
                 UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged
             };
 
-            BindingOperations.SetBinding(PropertyNameComboBox, ComboBox.TextProperty, propertyBinding);
-            BindingOperations.SetBinding(ComparatorComboBox, ComboBox.TextProperty, comparatorBinding);
-            BindingOperations.SetBinding(PropertyValueTextBox, TextBox.TextProperty, comparatorValueToCompareBinding);
+            BindingOperations.SetBinding(PropertyNameComboBox, ComboBox.TextProperty, _propertyBinding);
+            BindingOperations.SetBinding(ComparatorComboBox, ComboBox.TextProperty, _comparatorBinding);
+            BindingOperations.SetBinding(PropertyValueTextBox, TextBox.TextProperty, _comparatorValueToCompareBinding);
             dataSourceToBind.OnPropertyChanged("PropertyName");
             dataSourceToBind.OnPropertyChanged("Comparator");
             dataSourceToBind.OnPropertyChanged("ValueToCompare");
@@ -94,8 +94,8 @@ namespace UserManagementSystem.Controls
 
         private void InitializePropertySelection()
         {
-            allProperties = getPropertiesOfAllPersonModels();
-            foreach (PropertyInfo property in allProperties)
+            _allProperties = getPropertiesOfAllPersonModels();
+            foreach (PropertyInfo property in _allProperties)
             {
                 PropertyNameComboBox.Items.Add(property.Name);
 
@@ -128,10 +128,10 @@ namespace UserManagementSystem.Controls
 
         private void InitializeComparatorValues()
         {
-            PropertyInfo selectedProperty = allProperties.First(prop => prop.Name == PropertyNameComboBox.SelectedValue);
+            PropertyInfo selectedProperty = _allProperties.First(prop => prop.Name == PropertyNameComboBox.SelectedValue);
             Console.WriteLine(selectedProperty.PropertyType.ToString());
-            propertyType = selectedProperty.PropertyType;
-            switch (propertyType.ToString())
+            _propertyType = selectedProperty.PropertyType;
+            switch (_propertyType.ToString())
             {
                 case "System.String" :
                     ComparatorComboBox.Items.Clear();

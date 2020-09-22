@@ -25,7 +25,6 @@ namespace UserManagementSystem.Controls
     public partial class FilterOverview : Window
     {
         static public event Action filtersClosed;
-        private string _typeFilter;
         private List<Filter> filters = new List<Filter>();
         public FilterOverview()
         {
@@ -83,11 +82,6 @@ namespace UserManagementSystem.Controls
         public void removeEntryFromWrapper(UIElement itemToRemove)
         {
             this.filtersPanel.Children.Remove(itemToRemove);
-        }
-
-        private void TypeSelection_DropDownClosed(object sender, EventArgs e)
-        {
-            _typeFilter = TypeSelection.SelectedItem.ToString();
         }
     }
 }

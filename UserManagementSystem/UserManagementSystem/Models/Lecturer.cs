@@ -10,6 +10,14 @@ namespace UserManagementSystem.Models
 {
     class Lecturer: UniversityMember
     {
+
+        private double _salary;
+        public double Salary
+        {
+            get => _salary;
+            set => SetField(ref _salary, value, "Salary");
+        }
+
         public Lecturer(int matriculationNumber, string name, string surname): base(matriculationNumber,name, surname)
         {
         }
@@ -27,14 +35,6 @@ namespace UserManagementSystem.Models
         public Lecturer(List<PropertyInfo> properties) : base(properties)
         {
             properties.ForEach(propertie => Console.WriteLine(propertie.GetValue(propertie)));
-        }
-
-        private double _salary;
-
-        public double Salary
-        {
-            get => _salary;
-            set => SetField(ref _salary, value, "Salary");
         }
     }
 }

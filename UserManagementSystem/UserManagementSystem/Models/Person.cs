@@ -11,27 +11,6 @@ namespace UserManagementSystem.Models
 {
     public class Person : IPropertyNotificator
     {
-
-        public Person(string name, string surname)
-        {
-            _name = name;
-            _surname = surname;
-        }
-        public Person() { }
-
-        virtual public Person copyPerson(Person instanceToCopy)
-        {
-            return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
-        }
-
-        public Person(List<PropertyInfo> properties)
-        {
-            properties.ForEach(propertie => Console.WriteLine(propertie));
-        }
-
-        // private fields
-        // notice that all fields are strings for simplification. int would work as well, but since two way databinding is used here
-        // it would use 0 as default and would not allow any other information in those textboxes. 
         private string _name;
         private string _surname;
         private int _age;
@@ -39,12 +18,10 @@ namespace UserManagementSystem.Models
         private double _height;
         private double _weight;
 
-
-        // properties handling private fields
         public string Name
         {
             get => _name;
-            set { SetField(ref _name, value, "Name"); Console.WriteLine(_name);}
+            set { SetField(ref _name, value, "Name"); Console.WriteLine(_name); }
 
         }
 
@@ -78,7 +55,21 @@ namespace UserManagementSystem.Models
             set { SetField(ref _weight, value, "Weight"); }
         }
 
+        public Person(string name, string surname)
+        {
+            _name = name;
+            _surname = surname;
+        }
+        public Person() { }
 
+        virtual public Person copyPerson(Person instanceToCopy)
+        {
+            return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
+        }
 
+        public Person(List<PropertyInfo> properties)
+        {
+            properties.ForEach(propertie => Console.WriteLine(propertie));
+        }
     }
 }
