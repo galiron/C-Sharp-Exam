@@ -9,6 +9,9 @@ using UserManagementSystem.Models;
 
 namespace UserManagementSystem.Collections
 {
+    /// <summary>
+    /// Collection with events to handle changes to the state
+    /// </summary>
     class PersonCollection : Collection<Person>
     {
 
@@ -20,7 +23,7 @@ namespace UserManagementSystem.Collections
         {
         }
 
-
+        // overriden insert with additional error handling
         protected override void InsertItem(int index, Person item)
         {
             if (item != null)
@@ -37,6 +40,7 @@ namespace UserManagementSystem.Collections
             }
         }
 
+        // overriden  set with additional error handling
         protected override void SetItem(int index, Person item)
         {
             if (item != null)
@@ -53,6 +57,7 @@ namespace UserManagementSystem.Collections
             }
         }
 
+        // overriden remove with additional error handling
         protected override void RemoveItem(int index)
         {
                 base.RemoveItem(index);
@@ -60,20 +65,6 @@ namespace UserManagementSystem.Collections
                 {
                     personremoved();
                 }
-        }
-
-        public Collection<Person> retrieveAllPersonsGeneric <T> (T person)
-        {
-            Collection<Person> collection = new Collection<Person>();
-            base.Items.ToList().ForEach(item =>
-            {
-                if (item.GetType() == typeof(T))
-                {
-                    collection.Add(item);
-                }
-
-            });
-            return collection;
         }
     }
 }

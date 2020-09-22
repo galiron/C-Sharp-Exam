@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace UserManagementSystem.Models
 {
+    /// <summary>
+    /// Model which represents the necessary properties to filter Persons by their properties
+    /// </summary>
     public class Filter : IPropertyNotificator
     {
         private string _propertyName;
@@ -15,12 +18,6 @@ namespace UserManagementSystem.Models
         public Filter()
         {
 
-        }
-
-        public Filter(string comparator, Object valueToCompare)
-        {
-            this._comparator = comparator;
-            this._valueToCompare = valueToCompare;
         }
 
         public string PropertyName

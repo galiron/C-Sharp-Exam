@@ -1,0 +1,6 @@
+﻿Properties:
+-Some Properties aren't referenced because they are only used by reflection.
+Existence is mandatory for the programm to work correctly!
+-All Properties are simple setters/getters for their private fields unless otherwise commented
+
+

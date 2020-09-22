@@ -24,7 +24,7 @@ using UserManagementSystem.Models;
 namespace UserManagementSystem.Controls
 {
     /// <summary>
-    /// Interaktionslogik für FilterEntry.xaml
+    /// UserControl managing a single Filter
     /// </summary>
     public partial class FilterEntry : UserControl
     {
@@ -34,10 +34,12 @@ namespace UserManagementSystem.Controls
         private PropertyInfo[] _allProperties;
         private Type _propertyType;
         private Filter _newEntry;
+        // only needed to delete this entry
         private FilterOverview _parent;
 
-
-
+        /// <summary>
+        /// initializes UI elements and sets the necessary events
+        /// </summary>
         public FilterEntry()
         {
             InitializeComponent();
@@ -46,6 +48,12 @@ namespace UserManagementSystem.Controls
             ComparatorComboBox.SelectionChanged += onComparatorBoxChanged;
         }
 
+        /// <summary>
+        /// Constructor which binds the source element (Filter) to the necessary UIElements
+        /// and sets the necessary event handlers to deal with selection changes.
+        /// </summary>
+        /// <param name="dataSourceToBind">The source Filter the entry should manage</param>
+        /// <param name="parent">parent of this entry</param>
         public FilterEntry(Filter dataSourceToBind, FilterOverview parent)
         {
             _parent = parent;
@@ -92,6 +100,9 @@ namespace UserManagementSystem.Controls
             dataSourceToBind.OnPropertyChanged("ValueToCompare");
         }
 
+        /// <summary>
+        /// Fills the Combobox for the propertyselection with values
+        /// </summary>
         private void InitializePropertySelection()
         {
             _allProperties = getPropertiesOfAllPersonModels();
@@ -102,6 +113,10 @@ namespace UserManagementSystem.Controls
             }
         }
 
+        /// <summary>
+        /// Searches for all properties available in the PersonModelDictionary
+        /// </summary>
+        /// <returns>Array of all distinct properties that exists over all Persons</returns>
         private PropertyInfo[] getPropertiesOfAllPersonModels()
         {
             List<Person> allPersonModels = new List<Person>();
@@ -120,12 +135,16 @@ namespace UserManagementSystem.Controls
             return allProperties.DistinctBy(prop => prop.Name).ToArray();
         }
 
+        // Enabling the comparator ComboBox
         private void enableComparator (object sender, SelectionChangedEventArgs e)
         {
             ComparatorComboBox.IsEnabled = true;
             InitializeComparatorValues();
         }
 
+        /// <summary>
+        /// Initialize the values of the comparator ComboBox depending on the properties data type
+        /// </summary>
         private void InitializeComparatorValues()
         {
             PropertyInfo selectedProperty = _allProperties.First(prop => prop.Name == PropertyNameComboBox.SelectedValue);
@@ -146,6 +165,7 @@ namespace UserManagementSystem.Controls
             PropertyValueTextBox.IsEnabled = true;
         }
 
+        // Adds items to the comparator ComboBox which are based on int32 or double
         private void addNumberComparator()
         {
             ComparatorComboBox.Items.Clear();
@@ -154,6 +174,11 @@ namespace UserManagementSystem.Controls
             ComparatorComboBox.Items.Add("=");
         }
 
+        /// <summary>
+        /// Event handler that disables and resets all ui elements when the propertie selection changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void onPropertyNameComboBoxChanged(object sender, SelectionChangedEventArgs e)
         {
             PropertyValueTextBox.IsEnabled = false;
@@ -161,11 +186,21 @@ namespace UserManagementSystem.Controls
             PropertyValueTextBox.Text = "";
         }
 
+        /// <summary>
+        /// Event handler that enables the PropertyValueTextBox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void onComparatorBoxChanged(object sender, SelectionChangedEventArgs e)
         {
             PropertyValueTextBox.IsEnabled = true;
         }
 
+        /// <summary>
+        /// Event handler that removes this entry
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveButton_Click(object sender, RoutedEventArgs e)
         {
             _parent.removeEntryFromWrapper(this);

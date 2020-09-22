@@ -8,6 +8,9 @@ using UserManagementSystem.Models;
 
 namespace UserManagementSystem.Services
 {
+    /// <summary>
+    /// Static class to convert Model A -> B
+    /// </summary>
     class ModelConverter
     {
         public ModelConverter()
@@ -15,6 +18,14 @@ namespace UserManagementSystem.Services
 
         }
 
+        /// <summary>
+        /// Transfers all common properties of the source to the target
+        /// </summary>
+        /// <typeparam name="S">Type containing properties to get converted</typeparam>
+        /// <typeparam name="T">Type to convert to</typeparam>
+        /// <param name="source">Target instance</param>
+        /// <param name="target">Source instance</param>
+        /// <returns></returns>
         public static T convertSourceToTargetModel<S, T>(S source, T target) where S : Person where T : Person
         {
             PropertyInfo[] sourceProperties = source.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);

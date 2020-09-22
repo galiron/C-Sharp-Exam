@@ -10,6 +10,9 @@ using UserManagementSystem.Services;
 
 namespace UserManagementSystem.Models
 {
+    /// <summary>
+    /// Student Model which is used as DataType to resemble a Student in the application
+    /// </summary>
     class Student: UniversityMember
     {
         private double _averageGrade;
@@ -20,14 +23,15 @@ namespace UserManagementSystem.Models
             set => SetField(ref _averageGrade, value, "AverageGrade");
         }
 
-        public Student(int matriculationNumber, string name, string surname): base(matriculationNumber, name, surname)
-        {
-        }
-
         public Student():base()
         {
         }
 
+        /// <summary>
+        /// Copies a person
+        /// </summary>
+        /// <param name="instanceToCopy"></param>
+        /// <returns>new instance of given instanceToCopy</returns>
         public override Person copyPerson(Person instanceToCopy)
         {
             return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);

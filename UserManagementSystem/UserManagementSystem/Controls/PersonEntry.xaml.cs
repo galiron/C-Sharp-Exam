@@ -18,12 +18,18 @@ using UserManagementSystem.Models;
 namespace UserManagementSystem.Controls
 {
     /// <summary>
-    /// Interaktionslogik für PersonEntry.xaml
+    /// Logic for the PersonEntry.xaml
     /// </summary>
     public partial class PersonEntry : UserControl
     {
         private Person _person;
         private PersonOverview _parent;
+
+        /// <summary>
+        /// Initialization for all PersonEntry UI Elements
+        /// </summary>
+        /// <param name="person">Person that this entry represents</param>
+        /// <param name="parent">Parent</param>
         public PersonEntry(Person person, PersonOverview parent)
         {
             _parent = parent;
@@ -33,16 +39,26 @@ namespace UserManagementSystem.Controls
             this.viewUserButton.Content = "View User";
         }
 
+        /// <summary>
+        /// Event handler to call the PersonView with the entries person
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void viewUser(object sender, RoutedEventArgs e)
         {
             PersonView personView = new PersonView(_person);
             personView.Show();
         }
 
+        /// <summary>
+        /// Event handler to remove this entry and it's person
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void deleteButton_Click(object sender, RoutedEventArgs e)
         {
-            _parent.removeEntry(this);
             AppState.Persons.Remove(_person);
+            _parent.removeEntry(this);
         }
     }
 }

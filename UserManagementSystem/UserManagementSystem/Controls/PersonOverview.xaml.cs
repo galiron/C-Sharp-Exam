@@ -25,12 +25,15 @@ using Formatting = Newtonsoft.Json.Formatting;
 namespace UserManagementSystem.Controls
 {
     /// <summary>
-    /// Interaktionslogik für PersonOverview.xaml
+    /// Logic for the PersonOverview.xaml
     /// </summary>
     public partial class PersonOverview : UserControl
     {
         private Window _personView;
 
+        /// <summary>
+        /// Register event handlers to keep the overview's PersonEntries updated
+        /// </summary>
         public PersonOverview()
         {
             FilterOverview.filtersClosed += updatePersonTable;
@@ -41,6 +44,9 @@ namespace UserManagementSystem.Controls
             
         }
 
+        /// <summary>
+        /// Reloads all PersonEntries from the AppState
+        /// </summary>
         public void updatePersonTable()
         {
             List<Filter> filters = AppState.Filters;
@@ -52,6 +58,12 @@ namespace UserManagementSystem.Controls
             });
         }
 
+        /// <summary>
+        /// Validates if a person passes all set filters
+        /// </summary>
+        /// <param name="personToFilter">Person to be validated</param>
+        /// <param name="allFilters">Filters to be applied</param>
+        /// <returns></returns>
         private bool filterCanBeApplied(Person personToFilter, List<Filter> allFilters)
         {
             PropertyInfo[] propertiesOfPerson = personToFilter.GetType().GetProperties();
@@ -109,12 +121,12 @@ namespace UserManagementSystem.Controls
                     }
                 }
             });
+
+            // special filter which does not comply to the Filter model
             Person targetType = (Person) ClassGenerator.CreatePersonClassFromString(AppState.PersonTypeFilter);
             bool isTypeOf = targetType.GetType().IsAssignableFrom(personToFilter.GetType());
             filtersCouldBeApplied.Add(isTypeOf);
 
-
-           
             bool isValid = filtersCouldBeApplied.Contains(false);
             if (isValid)
             {
@@ -126,6 +138,12 @@ namespace UserManagementSystem.Controls
             }
         }
 
+
+        /// <summary>
+        /// event handler to create a new Person instance and delegate it to the PersonView
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newUser_Click(object sender, RoutedEventArgs e)
         {
             Person newPerson = (Person) ClassGenerator.CreatePersonClassFromString("Person");
@@ -133,6 +151,11 @@ namespace UserManagementSystem.Controls
             _personView.Show();
         }
 
+        /// <summary>
+        /// Event handler to import users from a file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void importUsers_Click(object sender, RoutedEventArgs e)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings()
@@ -153,6 +176,11 @@ namespace UserManagementSystem.Controls
 
         }
 
+        /// <summary>
+        /// Event handler to export users to a file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void exportUsers_Click(object sender, RoutedEventArgs e)
         {
             JsonSerializerSettings settings = new JsonSerializerSettings()
@@ -165,12 +193,21 @@ namespace UserManagementSystem.Controls
             File.WriteAllText(@"./../../Data/storage.json", serializedJson);
         }
 
+        /// <summary>
+        /// Event handler that opens the FilterOverview
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void manageFilter_Click(object sender, RoutedEventArgs e)
         {
             Window filterOverview = new FilterOverview();
             filterOverview.Show();
         }
 
+        /// <summary>
+        /// Function to remove an Entry from the PersonOverview
+        /// </summary>
+        /// <param name="personEntry"></param>
         public void removeEntry(PersonEntry personEntry)
         {
             this.PersonTable.Children.Remove(personEntry);

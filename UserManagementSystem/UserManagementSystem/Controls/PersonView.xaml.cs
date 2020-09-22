@@ -23,7 +23,7 @@ using ComboBox = System.Windows.Controls.ComboBox;
 namespace UserManagementSystem.Controls
 {
     /// <summary>
-    /// Interaktionslogik für PersonView.xaml
+    /// Logic for the PersonView.xaml
     /// </summary>
     public partial class PersonView : Window
     {
@@ -38,6 +38,10 @@ namespace UserManagementSystem.Controls
             set => _personToEdit = value;
         }
 
+        /// <summary>
+        /// Initializing UI Elements and necessary data to manage the given Person
+        /// </summary>
+        /// <param name="person">Person to be managed</param>
         public PersonView(Person person)
         {
             _backupPerson = person;
@@ -50,6 +54,9 @@ namespace UserManagementSystem.Controls
             initializeComboBox();
         }
 
+        /// <summary>
+        /// Initializing the personTypeSelection ComboBox with items from the PersonModelDictionary 
+        /// </summary>
         private void initializeComboBox()
         {
             List<string> personTypeComboBoxEntries = new List<string>();
@@ -69,6 +76,9 @@ namespace UserManagementSystem.Controls
         }
 
 
+        /// <summary>
+        /// Gets unique Class fields (which distinguish from the source Model) and adds them to the View
+        /// </summary>
         private void updateUserControlByUniqueClassFields()
         {
             PropertyInfo[] varyingPropeties = findVaryingFields();
@@ -76,6 +86,9 @@ namespace UserManagementSystem.Controls
 
         }
 
+        /// <summary>
+        /// Gets common Class fields (which are common wih source Model) and adds them to the View
+        /// </summary>
         private void updateUserControlByCommonClassFields()
         {
             PropertyInfo[] commonPropeties = findCommonFields();
@@ -83,6 +96,11 @@ namespace UserManagementSystem.Controls
 
         }
 
+
+        /// <summary>
+        /// Creates a new PropertyEntries from a given Array
+        /// </summary>
+        /// <param name="propertiesToInstanciate"></param>
         private void instanciatePropertyEntries(PropertyInfo[] propertiesToInstanciate)
         {
             propertiesToInstanciate.ToList().ForEach((property) =>
@@ -91,11 +109,20 @@ namespace UserManagementSystem.Controls
             });
         }
 
+        /// <summary>
+        /// Event handler to update the user controls
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void onUpdateUserControl(object sender, EventArgs e)
         {
             updateUserControl();
 
         }
+
+        /// <summary>
+        /// Function to update the UI element of the View
+        /// </summary>
         private void updateUserControl()
         {
             PersonToEdit =  PersonToEdit.copyPerson(
@@ -107,6 +134,10 @@ namespace UserManagementSystem.Controls
         }
 
         // could've abstracted those two functions because they're pretty similar but it would cause confusion due to no fitting naming
+        /// <summary>
+        /// Function to find all varying fields of the current and target model
+        /// </summary>
+        /// <returns></returns>
         private PropertyInfo[] findVaryingFields()
         {
             PropertyInfo[] sourceProperties = _backupPerson.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -114,10 +145,13 @@ namespace UserManagementSystem.Controls
             ModelConverter.convertSourceToTargetModel(_backupPerson, selectedPersonType);
             PropertyInfo[] targetProperties = selectedPersonType.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
             PropertyInfo[] sharedProperties = targetProperties.Where(targetProperty => !sourceProperties.Select(p => p.Name).Contains(targetProperty.Name)).ToArray();
-            // can't return at previous line because the inversion by ! would get ignored bug
             return sharedProperties;
         }
 
+        /// <summary>
+        /// Function to find all common fields of the current and target model
+        /// </summary>
+        /// <returns></returns>
         private PropertyInfo[] findCommonFields()
         {
             PropertyInfo[] sourceProperties = _backupPerson.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
@@ -127,6 +161,12 @@ namespace UserManagementSystem.Controls
             return targetProperties.Where(targetProperty => sourceProperties.Select(p => p.Name).Contains(targetProperty.Name)).ToArray();
         }
 
+
+        /// <summary>
+        /// Event handler to save the Person of this view to the AppState
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void save_Click(object sender, RoutedEventArgs e)
         {
 
@@ -142,8 +182,14 @@ namespace UserManagementSystem.Controls
             this.Close();
         }
 
+        /// <summary>
+        /// Event Handler to close the view and ensure to not persist the changes
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void cancel_Click(object sender, RoutedEventArgs e)
         {
+            // PersonToEdit still holds a reference to the AppState, so the backup needs to be loaded.
             PersonToEdit = _backupPerson;
             this.Close();
         }

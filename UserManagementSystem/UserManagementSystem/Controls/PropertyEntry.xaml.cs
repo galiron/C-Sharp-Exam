@@ -21,11 +21,17 @@ using UserManagementSystem.Models;
 namespace UserManagementSystem.Controls
 {
     /// <summary>
-    /// Interaktionslogik für PropertyEntry.xaml
+    /// Logic for the PropertyEntry.xaml
     /// </summary>
     public partial class PropertyEntry : UserControl
     {
         private Binding _propertyBinding;
+
+        /// <summary>
+        /// Initialization of UI Elements and Databinding 
+        /// </summary>
+        /// <param name="dataSourceToBind"></param>
+        /// <param name="propertyName"></param>
         public PropertyEntry(Person dataSourceToBind, string propertyName)
         {
             DataContext = dataSourceToBind;

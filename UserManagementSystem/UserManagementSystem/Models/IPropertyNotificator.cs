@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace UserManagementSystem.Models
 {
+    /// <summary>
+    /// Class to make Person able to notify changes (relevant for Two-Way Databinding and update cycle)
+    /// </summary>
     public class IPropertyNotificator: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -22,12 +25,12 @@ namespace UserManagementSystem.Models
         }
 
         /// <summary>
-        /// Generic function to set property fields considering the INotifyPropertyChanged interface for databinding
+        /// Generic function to set property fields considering the INotifyPropertyChanged interface for DataBinding
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="field"></param>
-        /// <param name="value"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="field">reference to field name</param>
+        /// <param name="value">value to be set</param>
+        /// <param name="propertyName">propertyName which manages the field</param>
         protected void SetField<T>(ref T field, T value, string propertyName)
         {
             field = value;

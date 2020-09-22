@@ -8,7 +8,10 @@ using UserManagementSystem.Services;
 
 namespace UserManagementSystem.Models
 {
-    class Lecturer: UniversityMember
+    /// <summary>
+    /// Lecturer Model which is used as DataType to resemble a Lecturer in the application
+    /// </summary>
+    class Lecturer : UniversityMember
     {
         private double _salary;
 
@@ -18,15 +21,16 @@ namespace UserManagementSystem.Models
             set => SetField(ref _salary, value, "Salary");
         }
 
-        public Lecturer(int matriculationNumber, string name, string surname): base(matriculationNumber,name, surname)
-        {
-        }
-
         public Lecturer() : base()
         {
 
         }
 
+        /// <summary>
+        /// Copies a person
+        /// </summary>
+        /// <param name="instanceToCopy"></param>
+        /// <returns>new instance of given instanceToCopy</returns>
         public override Person copyPerson(Person instanceToCopy)
         {
             return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);

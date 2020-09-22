@@ -9,6 +9,11 @@ using UserManagementSystem.Services;
 
 namespace UserManagementSystem.Models
 {
+    /// <summary>
+    /// Person Model which is used as DataType to resemble a Person in the application
+    /// Main Model which every Person type derives from
+    /// Implements the IpropertyNotificator class to 
+    /// </summary>
     public class Person : IPropertyNotificator
     {
         private string _name;
@@ -55,13 +60,13 @@ namespace UserManagementSystem.Models
             set { SetField(ref _weight, value, "Weight"); }
         }
 
-        public Person(string name, string surname)
-        {
-            _name = name;
-            _surname = surname;
-        }
         public Person() { }
 
+        /// <summary>
+        /// Copies a person
+        /// </summary>
+        /// <param name="instanceToCopy"></param>
+        /// <returns>new instance of given instanceToCopy</returns>
         virtual public Person copyPerson(Person instanceToCopy)
         {
             return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);

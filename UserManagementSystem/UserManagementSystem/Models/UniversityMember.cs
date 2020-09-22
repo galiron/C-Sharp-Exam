@@ -18,16 +18,16 @@ namespace UserManagementSystem.Models
             set => SetField(ref _matriculationnumber, value, "MatriculationNumber");
         }
 
-        public UniversityMember(int matriculationNumber, string name, string surname): base(name, surname)
-        {
-            this.MatriculationNumber = matriculationNumber;
-        }
-
         public UniversityMember() : base()
         {
 
         }
 
+        /// <summary>
+        /// Copies a person
+        /// </summary>
+        /// <param name="instanceToCopy"></param>
+        /// <returns>new instance of given instanceToCopy</returns>
         public override Person copyPerson(Person instanceToCopy)
         {
             return ModelConverter.convertSourceToTargetModel(this, instanceToCopy);
