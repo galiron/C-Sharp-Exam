@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using MoreLinq;
+using UserManagementSystem.Collections;
 using UserManagementSystem.Models;
 
 namespace UserManagementSystem.Controls
@@ -22,11 +25,20 @@ namespace UserManagementSystem.Controls
     public partial class FilterOverview : Window
     {
         static public event Action filtersClosed;
+        private string _typeFilter;
         private List<Filter> filters = new List<Filter>();
         public FilterOverview()
         {
             InitializeComponent();
             initFilters();
+            initPersonTypeFilter();
+        }
+
+        private void initPersonTypeFilter()
+        {
+            PersonModelDictionary.personClassDictionary.ForEach(keyValue =>
+                TypeSelection.Items.Add(keyValue.Key));
+            TypeSelection.SelectedItem = AppState.PersonTypeFilter;
         }
 
         private void initFilters()
@@ -57,6 +69,7 @@ namespace UserManagementSystem.Controls
             }
             
             AppState.Filters = filters;
+            AppState.PersonTypeFilter = TypeSelection.SelectedItem.ToString();
             filtersClosed();
             this.Close();
         }
@@ -70,6 +83,11 @@ namespace UserManagementSystem.Controls
         public void removeEntryFromWrapper(UIElement itemToRemove)
         {
             this.filtersPanel.Children.Remove(itemToRemove);
+        }
+
+        private void TypeSelection_DropDownClosed(object sender, EventArgs e)
+        {
+            _typeFilter = TypeSelection.SelectedItem.ToString();
         }
     }
 }

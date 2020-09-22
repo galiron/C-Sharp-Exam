@@ -20,7 +20,6 @@ E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\PersonView.baml
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\PropertyEntry.g.cs
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\Controls\PropertyEntry.baml
-E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\UserManagementSystem.csprojAssemblyReference.cache
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\Newtonsoft.Json.dll
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\bin\Debug\Newtonsoft.Json.xml
 E:\fh\master\C_Sharp\C-Sharp-Exam\UserManagementSystem\UserManagementSystem\obj\Debug\UserManagementSystem.csproj.CopyComplete

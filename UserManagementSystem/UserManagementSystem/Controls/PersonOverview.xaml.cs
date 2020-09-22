@@ -103,9 +103,18 @@ namespace UserManagementSystem.Controls
                         case "Contains":
                             filtersCouldBeApplied.Add(match.GetValue(personToFilter).ToString().Contains(Convert.ToString(filter.ValueToCompare)));
                             break;
+                        default:
+                            throw new ArgumentException("not allowed filter argument detected");
+                            break;
                     }
                 }
             });
+            Person targetType = (Person) ClassGenerator.CreatePersonClassFromString(AppState.PersonTypeFilter);
+            bool isTypeOf = targetType.GetType().IsAssignableFrom(personToFilter.GetType());
+            filtersCouldBeApplied.Add(isTypeOf);
+
+
+           
             bool isInvalid = filtersCouldBeApplied.Contains(false);
             if (isInvalid)
             {
@@ -131,9 +140,16 @@ namespace UserManagementSystem.Controls
                 TypeNameHandling = TypeNameHandling.All,
                 Formatting = Formatting.Indented
             };
-            string dataFromJsonFile = File.ReadAllText(@"./../storage.json");
-            AppState.Persons = JsonConvert.DeserializeObject<PersonCollection>(dataFromJsonFile, settings);
-            updatePersonTable();
+            try
+            {
+                string dataFromJsonFile = File.ReadAllText(@"./../../Data/storage.json");
+                AppState.Persons = JsonConvert.DeserializeObject<PersonCollection>(dataFromJsonFile, settings);
+                updatePersonTable();
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception);
+            }
 
         }
 
@@ -146,8 +162,8 @@ namespace UserManagementSystem.Controls
         };
             string serializedJson = JsonConvert.SerializeObject(AppState.Persons, settings);
             Console.WriteLine(serializedJson);
-            string path = @"./../storage.json";
-            File.WriteAllText(@"./../storage.json", serializedJson);
+            string path = @"./../../Data/storage.json";
+            File.WriteAllText(@"./../../Data/storage.json", serializedJson);
         }
 
         private void manageFilter_Click(object sender, RoutedEventArgs e)

@@ -159,6 +159,7 @@ namespace UserManagementSystem.Controls
         {
             PropertyValueTextBox.IsEnabled = false;
             ComparatorComboBox.Text="";
+            PropertyValueTextBox.Text = "";
         }
 
         private void onComparatorBoxChanged(object sender, SelectionChangedEventArgs e)

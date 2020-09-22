@@ -11,6 +11,7 @@ namespace UserManagementSystem.Models
     {
         private static PersonCollection _personCollection = new PersonCollection();
         private static List<Filter> _filter = new List<Filter>();
+        private static string _personTypeFilter = "Person";
 
         public static PersonCollection Persons
         {
@@ -21,6 +22,11 @@ namespace UserManagementSystem.Models
         {
             get => _filter;
             set => _filter = value;
+        }
+        public static string PersonTypeFilter
+        {
+            get => _personTypeFilter;
+            set => _personTypeFilter = value;
         }
     }
 }

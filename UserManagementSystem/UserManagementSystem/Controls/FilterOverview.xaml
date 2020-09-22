@@ -10,10 +10,11 @@
 
         <Grid.RowDefinitions>
             <RowDefinition MinHeight="51" Height="70*"></RowDefinition>
+            <RowDefinition MinHeight="51" Height="50*"></RowDefinition>
             <RowDefinition Height="290*"></RowDefinition>
             <RowDefinition Height="59*"/>
         </Grid.RowDefinitions>
-        <Grid Row="2">
+        <Grid Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
@@ -23,9 +24,12 @@
             <Button Grid.Column="1" x:Name="saveButton" Content="Save" Click="saveButton_Click" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
             <Button Grid.Column="2" x:Name="closeButton" Content="Close" Click="closeButton_Click" HorizontalAlignment="Center" Margin="0" VerticalAlignment="Center" Width="75"/>
         </Grid>
-
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Label Content="Person types to be displayed:" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="0,0,6,0" ></Label>
+            <ComboBox x:Name="TypeSelection" Height="24" Width="100" MinHeight="24" MinWidth="100" DropDownClosed="TypeSelection_DropDownClosed"/>
+        </StackPanel>
         <Label x:Name="label" Grid.Row="0" Content="Filter" Margin="351,0" VerticalAlignment="Top" FontSize="36" FontFamily="Arial" HorizontalAlignment="Center" MinHeight="51" Height="51" Width="90"/>
-        <WrapPanel x:Name="filtersPanel"  HorizontalAlignment="Left" Margin="0" Grid.Row="1" VerticalAlignment="Top" Orientation="Vertical"/>
+        <WrapPanel x:Name="filtersPanel"  HorizontalAlignment="Left" Margin="0" Grid.Row="2" VerticalAlignment="Top" Orientation="Vertical"/>
 
     </Grid>
 </Window>
