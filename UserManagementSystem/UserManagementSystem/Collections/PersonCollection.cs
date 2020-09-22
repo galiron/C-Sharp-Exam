@@ -17,7 +17,7 @@ namespace UserManagementSystem.Collections
 
         static public event Action personAdded;
         static public event Action personSet;
-        static public event Action personremoved;
+        static public event Action personRemoved;
 
         public PersonCollection()
         {
@@ -63,7 +63,7 @@ namespace UserManagementSystem.Collections
                 base.RemoveItem(index);
                 if (personAdded != null)
                 {
-                    personremoved();
+                    personRemoved();
                 }
         }
     }

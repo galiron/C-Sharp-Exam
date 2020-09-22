@@ -39,7 +39,7 @@ namespace UserManagementSystem.Controls
             FilterOverview.filtersClosed += updatePersonTable;
             PersonCollection.personAdded += updatePersonTable;
             PersonCollection.personSet += updatePersonTable;
-            PersonCollection.personremoved += updatePersonTable;
+            PersonCollection.personRemoved += updatePersonTable;
             InitializeComponent();
             
         }

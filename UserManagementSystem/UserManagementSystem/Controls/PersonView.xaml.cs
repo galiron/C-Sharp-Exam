@@ -46,7 +46,6 @@ namespace UserManagementSystem.Controls
         {
             _backupPerson = person;
             _indexOfPersonInAppStatePersonCollection = AppState.Persons.IndexOf(person);
-            DataContext = this;
             PersonToEdit = person;
             _currentPersonType = person.GetType();
 

@@ -80,17 +80,18 @@ namespace UserManagementSystem.Controls
             
             foreach (FilterEntry child in filtersPanel.Children)
             {
-                Filter nF = new Filter();
-                nF.ValueToCompare = child.PropertyValueTextBox.Text;
-                nF.PropertyName = child.PropertyNameComboBox.Text;
-                nF.Comparator = child.ComparatorComboBox.Text;
-                filters.Add(nF);
+                Filter filter = new Filter
+                {
+                    ValueToCompare = child.PropertyValueTextBox.Text,
+                    PropertyName = child.PropertyNameComboBox.Text,
+                    Comparator = child.ComparatorComboBox.Text
+                };
+                filters.Add(filter);
             }
             
             AppState.Filters = filters;
             AppState.PersonTypeFilter = TypeSelection.SelectedItem.ToString();
-            filtersClosed();
-            this.Close();
+            closeWindow();
         }
 
         /// <summary>
@@ -99,6 +100,11 @@ namespace UserManagementSystem.Controls
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            closeWindow();
+        }
+
+        private void closeWindow()
         {
             filtersClosed();
             this.Close();
