@@ -1,22 +1,11 @@
-﻿using System;
-using System.Collections;
+﻿using MoreLinq;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using MoreLinq;
 using UserManagementSystem.Collections;
 using UserManagementSystem.Generators;
 using UserManagementSystem.Models;
@@ -147,7 +136,7 @@ namespace UserManagementSystem.Controls
         /// </summary>
         private void InitializeComparatorValues()
         {
-            PropertyInfo selectedProperty = _allProperties.First(prop => prop.Name == PropertyNameComboBox.SelectedValue);
+            PropertyInfo selectedProperty = _allProperties.First(prop => prop.Name == (string)PropertyNameComboBox.SelectedValue);
             _propertyType = selectedProperty.PropertyType;
             switch (_propertyType.ToString())
             {
