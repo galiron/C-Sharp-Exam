@@ -1,22 +1,11 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Xml;
-using Newtonsoft.Json;
 using UserManagementSystem.Collections;
 using UserManagementSystem.Generators;
 using UserManagementSystem.Models;
@@ -84,7 +73,7 @@ namespace UserManagementSystem.Controls
                                 filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) >
                                                           Convert.ToDouble((filter.ValueToCompare)));
                             }
-                            catch (Exception e)
+                            catch (Exception)
                             {
                                 filtersCouldBeApplied.Add(true);
                             }
@@ -96,7 +85,7 @@ namespace UserManagementSystem.Controls
                                 filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) <
                                                           Convert.ToDouble((filter.ValueToCompare)));
                             }
-                            catch (Exception e)
+                            catch (Exception)
                             {
                                 filtersCouldBeApplied.Add(true);
                             };
@@ -107,7 +96,7 @@ namespace UserManagementSystem.Controls
                                 filtersCouldBeApplied.Add(Convert.ToDouble(match.GetValue(personToFilter)) ==
                                                           Convert.ToDouble((filter.ValueToCompare)));
                             }
-                            catch (Exception e)
+                            catch (Exception)
                             {
                                 filtersCouldBeApplied.Add(true);
                             }
@@ -117,7 +106,6 @@ namespace UserManagementSystem.Controls
                             break;
                         default:
                             throw new ArgumentException("not allowed filter argument detected");
-                            break;
                     }
                 }
             });
@@ -189,7 +177,6 @@ namespace UserManagementSystem.Controls
                 Formatting = Formatting.Indented
         };
             string serializedJson = JsonConvert.SerializeObject(AppState.Persons, settings);
-            string path = @"./../../Data/storage.json";
             File.WriteAllText(@"./../../Data/storage.json", serializedJson);
         }
 
